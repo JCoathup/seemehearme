@@ -1,12 +1,13 @@
 {
-  "name": "openshift-cartridge-nodejs-template",
-  "version": "1.0.1",
-  "description": "Custom Node.js cartridge for OpenShift - sample application",
-  "private": true,
-  "main": "start.js",
+  "name": "webrtc-codelab",
+  "version": "0.0.1",
+  "description": "WebRTC codelab",
+  "main": "index.js",
   "scripts": {
-    "start": "node --use_strict start.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "node index.js"
   },
-  "author": "Ionut-Cristian Florescu <ionut.florescu@gmail.com>",
-  "license": "ISC"
-}
+  "dependencies": {
+    "node-static": "0.7.7",
+    "socket.io": "1.2.0"
+  }}
