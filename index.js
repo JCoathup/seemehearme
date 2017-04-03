@@ -34,6 +34,7 @@ io.sockets.on('connection', function(socket) {
       socket.join(room);
       log('Client ID ' + socket.id + ' created room ' + room);
       socket.emit('created', room, socket.id);
+      
 
     } else if (numClients === 2) {
       log('Client ID ' + socket.id + ' joined room ' + room);
