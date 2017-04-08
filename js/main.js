@@ -191,12 +191,9 @@ function handleIceCandidate(event) {
 }
 
 function handleRemoteStreamAdded(event) {
-  answer.addEventListener("click", function(){
     console.log('Remote stream added.');
     remoteVideo.src = window.URL.createObjectURL(event.stream);
     remoteStream = event.stream;
-  });
-
 }
 
 function handleCreateOfferError(event) {
@@ -258,9 +255,12 @@ function requestTurn(turnURL) {
 }
 
 function handleRemoteStreamAdded(event) {
-  console.log('Remote stream added.');
-  remoteVideo.src = window.URL.createObjectURL(event.stream);
-  remoteStream = event.stream;
+  answer.addEventListener("click", function(){
+    console.log('Remote stream added.');
+    remoteVideo.src = window.URL.createObjectURL(event.stream);
+    remoteStream = event.stream;
+  });
+
 }
 
 function handleRemoteStreamRemoved(event) {
