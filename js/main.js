@@ -82,10 +82,7 @@ socket.on('message', function(message) {
       maybeStart();
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
-    answer.addEventListener("click",function(){
       doAnswer();
-    })
-
   } else if (message.type === 'answer' && isStarted) {
     pc.setRemoteDescription(new RTCSessionDescription(message));
   } else if (message.type === 'candidate' && isStarted) {
@@ -209,11 +206,13 @@ function doCall() {
 }
 
 function doAnswer() {
-  console.log('Sending answer to peer.');
-  pc.createAnswer().then(
-    setLocalAndSendMessage,
-    onCreateSessionDescriptionError
-  );
+  answer.addEventListener("click", function(){
+    console.log('Sending answer to peer.');
+    pc.createAnswer().then(
+      setLocalAndSendMessage,
+      onCreateSessionDescriptionError
+    );
+  });
 }
 
 function setLocalAndSendMessage(sessionDescription) {
