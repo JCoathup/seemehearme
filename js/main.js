@@ -361,6 +361,6 @@ function removeCN(sdpLines, mLineIndex) {
   sdpLines[mLineIndex] = mLineElements.join(' ');
   return sdpLines;
 }
-hangup.addEventListener("click", fucntion(){
+hangup.addEventListener("click", function(){
   stop();
 });
