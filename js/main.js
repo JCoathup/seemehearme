@@ -207,10 +207,13 @@ function doCall() {
 
 function doAnswer() {
     console.log('Sending answer to peer.');
-    pc.createAnswer().then(
-      setLocalAndSendMessage,
-      onCreateSessionDescriptionError
-    );
+    answer.addEventListener("click", function(){
+      pc.createAnswer().then(
+        setLocalAndSendMessage,
+        onCreateSessionDescriptionError
+      );
+    })
+
 }
 
 function setLocalAndSendMessage(sessionDescription) {
@@ -362,7 +365,8 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 
-
+/*
 hangup.addEventListener("click", function(){
   stop();
 });
+*?
