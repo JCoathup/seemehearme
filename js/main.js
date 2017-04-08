@@ -118,9 +118,12 @@ function gotStream(stream) {
   localVideo.src = window.URL.createObjectURL(stream);
   localStream = stream;
   sendMessage('got user media');
-  if (isInitiator) {
-    maybeStart();
-  }
+  call.addEventListener("click", function(){
+    if (isInitiator) {
+      maybeStart();
+    }
+  })
+
 }
 
 var constraints = {
