@@ -82,7 +82,7 @@ socket.on('message', function(message) {
       maybeStart();
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
-      doAnswer();
+    doAnswer();
   } else if (message.type === 'answer' && isStarted) {
     pc.setRemoteDescription(new RTCSessionDescription(message));
   } else if (message.type === 'candidate' && isStarted) {
@@ -191,9 +191,12 @@ function handleIceCandidate(event) {
 }
 
 function handleRemoteStreamAdded(event) {
-  console.log('Remote stream added.');
-  remoteVideo.src = window.URL.createObjectURL(event.stream);
-  remoteStream = event.stream;
+  answer.addEventListener("click", function(){
+    console.log('Remote stream added.');
+    remoteVideo.src = window.URL.createObjectURL(event.stream);
+    remoteStream = event.stream;
+  });
+
 }
 
 function handleCreateOfferError(event) {
