@@ -206,13 +206,11 @@ function doCall() {
 }
 
 function doAnswer() {
-  answer.addEventListener("click", function(){
     console.log('Sending answer to peer.');
     pc.createAnswer().then(
       setLocalAndSendMessage,
       onCreateSessionDescriptionError
     );
-  });
 }
 
 function setLocalAndSendMessage(sessionDescription) {
@@ -363,3 +361,6 @@ function removeCN(sdpLines, mLineIndex) {
   sdpLines[mLineIndex] = mLineElements.join(' ');
   return sdpLines;
 }
+hangup.addEventListener("click", fucntion(){
+  stop();
+});
