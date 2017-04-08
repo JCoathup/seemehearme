@@ -119,14 +119,13 @@ function gotStream(stream) {
   localStream = stream;
   sendMessage('got user media');
 
-    if (isInitiator) {
-      call.addEventListener("click", function(){
-      maybeStart();
-        });
-    }
-
-
 }
+call.addEventListener("click", function(){
+  if (isInitiator) {
+      maybeStart();
+  }
+})
+
 
 var constraints = {
   video: true
