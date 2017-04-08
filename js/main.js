@@ -118,11 +118,13 @@ function gotStream(stream) {
   localVideo.src = window.URL.createObjectURL(stream);
   localStream = stream;
   sendMessage('got user media');
-  call.addEventListener("click", function(){
+
     if (isInitiator) {
+      call.addEventListener("click", function(){
       maybeStart();
+        });
     }
-  });
+
 
 }
 
