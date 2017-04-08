@@ -84,7 +84,9 @@ socket.on('message', function(message) {
     pc.setRemoteDescription(new RTCSessionDescription(message));
     doAnswer();
   } else if (message.type === 'answer' && isStarted) {
-    pc.setRemoteDescription(new RTCSessionDescription(message));
+    answer.addEventListener("click", function(){
+      pc.setRemoteDescription(new RTCSessionDescription(message));
+    });
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
       sdpMLineIndex: message.label,
@@ -255,12 +257,9 @@ function requestTurn(turnURL) {
 }
 
 function handleRemoteStreamAdded(event) {
-  answer.addEventListener("click", function(){
     console.log('Remote stream added.');
     remoteVideo.src = window.URL.createObjectURL(event.stream);
     remoteStream = event.stream;
-  });
-
 }
 
 function handleRemoteStreamRemoved(event) {
