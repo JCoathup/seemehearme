@@ -1,5 +1,11 @@
 'use strict';
 
+//declare control buttons
+var start = document.getElementById("start");
+var call = document.getElementById("call");
+var answer = document.getElementById("answer");
+var hangup = document.getElementById("hangup");
+
 var isChannelReady = false;
 var isInitiator = false;
 var isStarted = false;
@@ -95,14 +101,17 @@ socket.on('message', function(message) {
 var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
 
-navigator.mediaDevices.getUserMedia({
-  audio: false,
-  video: true
-})
-.then(gotStream)
-.catch(function(e) {
-  alert('getUserMedia() error: ' + e.name);
+start.addEventListener("click", function(){
+  navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: true
+  })
+  .then(gotStream)
+  .catch(function(e) {
+    alert('getUserMedia() error: ' + e.name);
+  });
 });
+
 
 function gotStream(stream) {
   console.log('Adding local stream.');
