@@ -82,7 +82,10 @@ socket.on('message', function(message) {
       maybeStart();
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
-    doAnswer();
+    answer.addEventListener("click",function(){
+      doAnswer();
+    })
+
   } else if (message.type === 'answer' && isStarted) {
     pc.setRemoteDescription(new RTCSessionDescription(message));
   } else if (message.type === 'candidate' && isStarted) {
