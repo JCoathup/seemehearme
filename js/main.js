@@ -122,7 +122,7 @@ function gotStream(stream) {
     if (isInitiator) {
       maybeStart();
     }
-  })
+  });
 
 }
 
