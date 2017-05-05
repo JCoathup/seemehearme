@@ -84,9 +84,7 @@ socket.on('message', function(message) {
     pc.setRemoteDescription(new RTCSessionDescription(message));
     doAnswer();
   } else if (message.type === 'answer' && isStarted) {
-    answer.addEventListener("click", function(){
       pc.setRemoteDescription(new RTCSessionDescription(message));
-    });
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
       sdpMLineIndex: message.label,
