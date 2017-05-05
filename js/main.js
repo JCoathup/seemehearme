@@ -83,7 +83,7 @@ socket.on('message', function(message) {
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
     console.log("INCOMING CALL");
-    answer.style.backgroundColor = "red";
+    answer.style.color = "red";
     doAnswer();
   } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
