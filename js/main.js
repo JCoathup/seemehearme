@@ -83,7 +83,6 @@ socket.on('message', function(message) {
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
     console.log("INCOMING CALL");
-    answer.innerHTML = "red";
     doAnswer();
   } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
@@ -208,6 +207,7 @@ function doCall() {
 }
 
 function doAnswer() {
+    answer.innerHTML = "red";
     console.log('Sending answer to peer.');
     pc.createAnswer().then(
       setLocalAndSendMessage,
