@@ -72,6 +72,9 @@ function sendMessage(message) {
   socket.emit('message', message);
 }
 var controls = document.getElementById("controls");
+function incoming(){
+  controls.innerHTML += "<div>incoming call</div>"
+}
 // This client receives a message
 socket.on('message', function(message) {
   console.log('Client received message:', message);
@@ -83,7 +86,7 @@ socket.on('message', function(message) {
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
     console.log("INCOMING CALL");
-    controls.innerHTML += "INCOMING CALL...";
+    incoming();
     doAnswer();
   } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
