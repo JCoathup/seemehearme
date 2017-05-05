@@ -207,7 +207,7 @@ function doCall() {
 }
 
 function doAnswer() {
-    answer.innerText = "red";
+    document.body.style.backgroundColor="red";
     console.log('Sending answer to peer.');
     pc.createAnswer().then(
       setLocalAndSendMessage,
