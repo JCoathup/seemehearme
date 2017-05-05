@@ -66,7 +66,7 @@ socket.on('log', function(array) {
 });
 
 ////////////////////////////////////////////////
-
+var localVideo = document.querySelector('#localVideo');
 function sendMessage(message) {
   console.log('Client sending message: ', message);
   socket.emit('message', message);
@@ -83,6 +83,7 @@ socket.on('message', function(message) {
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
     console.log("INCOMING CALL");
+    localVideo.innerHTML += "INCOMING CALL...";
     doAnswer();
   } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
@@ -99,7 +100,7 @@ socket.on('message', function(message) {
 
 ////////////////////////////////////////////////////
 
-var localVideo = document.querySelector('#localVideo');
+
 var remoteVideo = document.querySelector('#remoteVideo');
 
 start.addEventListener("click", function(){
@@ -207,7 +208,6 @@ function doCall() {
 }
 
 function doAnswer() {
-    alert("fdgfdgd");
     console.log('Sending answer to peer.');
     pc.createAnswer().then(
       setLocalAndSendMessage,
