@@ -71,7 +71,7 @@ function sendMessage(message) {
   console.log('Client sending message: ', message);
   socket.emit('message', message);
 }
-
+var controls = document.getElementById("controls");
 // This client receives a message
 socket.on('message', function(message) {
   console.log('Client received message:', message);
@@ -83,7 +83,7 @@ socket.on('message', function(message) {
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
     console.log("INCOMING CALL");
-    localVideo.innerHTML += "INCOMING CALL...";
+    controls.innerHTML += "INCOMING CALL...";
     doAnswer();
   } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
