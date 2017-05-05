@@ -82,10 +82,10 @@ socket.on('message', function(message) {
       maybeStart();
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
+    console.log("INCOMING CALL");
     doAnswer();
   } else if (message.type === 'answer' && isStarted) {
-      console.log("incoming call...");
-      pc.setRemoteDescription(new RTCSessionDescription(message));
+     pc.setRemoteDescription(new RTCSessionDescription(message));
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
       sdpMLineIndex: message.label,
@@ -363,7 +363,8 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 
-
+/*
 hangup.addEventListener("click", function(){
   stop();
 });
+*/
