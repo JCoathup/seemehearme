@@ -363,8 +363,7 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 
-/*
+
 hangup.addEventListener("click", function(){
   stop();
 });
-*/
