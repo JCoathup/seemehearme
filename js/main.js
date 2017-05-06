@@ -82,7 +82,7 @@ function incoming(){
   answer.addEventListener("click", function(){
     answered = true;
   });
-  if (!answered){
+  if (answered){
     doAnswer();
   }
 }
