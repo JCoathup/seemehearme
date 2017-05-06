@@ -73,6 +73,7 @@ function sendMessage(message) {
 }
 var controls = document.getElementById("controls");
 function incoming(){
+  console.log("INCOMING CALL...!");
   controls.innerHTML += "<div>incoming call</div>"
 }
 // This client receives a message
