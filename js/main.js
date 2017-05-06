@@ -6,6 +6,8 @@ var call = document.getElementById("call");
 var answer = document.getElementById("answer");
 var hangup = document.getElementById("hangup");
 
+var answered = false;
+
 var isChannelReady = false;
 var isInitiator = false;
 var isStarted = false;
@@ -74,7 +76,15 @@ function sendMessage(message) {
 var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
-  controls.innerHTML += "<div>incoming call</div>"
+  answer.style.backgroundColor = "red";
+  answer.style.color = "white";
+  controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
+  answer.addEventListener("click", function(){
+    answered = true;
+  });
+  if (answered){
+    doAnswer();
+  }
 }
 // This client receives a message
 socket.on('message', function(message) {
@@ -86,10 +96,8 @@ socket.on('message', function(message) {
       maybeStart();
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
-    console.log("INCOMING CALL");
     incoming();
-    doAnswer();
-  } else if (message.type === 'answer' && isStarted) {
+    } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
