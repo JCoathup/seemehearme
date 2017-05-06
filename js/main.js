@@ -4,7 +4,7 @@
 var start = document.getElementById("start");
 var call = document.getElementById("call");
 var answer = document.getElementById("answer");
-var hangup = document.getElementById("hangup");
+var endCall = document.getElementById("hangup");
 
 var answered = false;
 
@@ -376,8 +376,7 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 
-/*
-hangup.addEventListener("click", function(){
-  stop();
+
+endCall.addEventListener("click", function(){
+  hangup();
 });
-*/
