@@ -84,10 +84,12 @@ function incoming(){
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   //answer.addEventListener("click", function(){
   while (answered == false){
-    console.log("waiting to answer...");
+    setInterval(function(){
+      console.log("waiting to answer...");
+    }, 3000);    
   }
   doAnswer();
-  
+
   //});
   //});
 
