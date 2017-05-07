@@ -85,8 +85,9 @@ function incoming(){
   //answer.addEventListener("click", function(){
   while (answered == false){
     console.log("waiting to answer...");
-    doAnswer();
   }
+  doAnswer();
+  
   //});
   //});
 
