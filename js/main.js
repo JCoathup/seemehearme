@@ -81,6 +81,7 @@ function incoming(){
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
 }
 answer.addEventListener("click", function(){
+  console.log("12345");
   doAnswer();
 });
 
