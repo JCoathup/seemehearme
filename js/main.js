@@ -216,7 +216,7 @@ function doCall() {
 }
 
 function doAnswer() {
-    console.log("anyway...");
+    //console.log("anyway...");
     console.log('Sending answer to peer.');
     pc.createAnswer().then(
       setLocalAndSendMessage,
