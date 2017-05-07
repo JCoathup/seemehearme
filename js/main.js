@@ -74,6 +74,7 @@ function sendMessage(message) {
 var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
+  console.log("gfdjsgfj");
   answer.style.backgroundColor = "red";
   answer.style.color = "white";
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
