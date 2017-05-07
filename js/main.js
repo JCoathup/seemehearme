@@ -6,8 +6,6 @@ var call = document.getElementById("call");
 var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 
-var answered = false;
-
 var isChannelReady = false;
 var isInitiator = false;
 var isStarted = false;
@@ -80,11 +78,9 @@ function incoming(){
   answer.style.color = "white";
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   answer.addEventListener("click", function(){
-    answered = true;
-  });
-  if (!answered){
     doAnswer();
-  }
+  });
+
 }
 // This client receives a message
 socket.on('message', function(message) {
@@ -220,6 +216,7 @@ function doCall() {
 }
 
 function doAnswer() {
+    console.log("anyway...");
     console.log('Sending answer to peer.');
     pc.createAnswer().then(
       setLocalAndSendMessage,
