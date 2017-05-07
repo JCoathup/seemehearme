@@ -74,13 +74,12 @@ function sendMessage(message) {
 var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
-  console.log("gfdjsgfj");
   answer.style.backgroundColor = "red";
   answer.style.color = "white";
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
-  //answer.addEventListener("click", function(){
+  answer.addEventListener("click", function(){
     doAnswer();
-  //});
+  });
 
 }
 // This client receives a message
@@ -217,7 +216,7 @@ function doCall() {
 }
 
 function doAnswer() {
-    //console.log("anyway...");
+    console.log("anyway...");
     console.log('Sending answer to peer.');
     pc.createAnswer().then(
       setLocalAndSendMessage,
