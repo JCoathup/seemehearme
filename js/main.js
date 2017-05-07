@@ -71,10 +71,7 @@ function sendMessage(message) {
   console.log('Client sending message: ', message);
   socket.emit('message', message);
 }
-answer.addEventListener("click", function(){
-  answered = true;
-  console.log(true);
-});
+
 var answered = false;
 var controls = document.getElementById("controls");
 function incoming(){
@@ -82,12 +79,10 @@ function incoming(){
   answer.style.backgroundColor = "red";
   answer.style.color = "white";
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
-  //answer.addEventListener("click", function(){
 }
 answer.addEventListener("click", function(){
   doAnswer();
-})
-
+});
 
 // This client receives a message
 socket.on('message', function(message) {
