@@ -83,17 +83,12 @@ function incoming(){
   answer.style.color = "white";
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   //answer.addEventListener("click", function(){
-  while (answered == false){
-    setInterval(function(){
-      console.log("waiting to answer...");
-    }, 3000);    
-  }
-  doAnswer();
-
-  //});
-  //});
-
 }
+answer.addEventListener("click", function(){
+  doAnswer();
+})
+
+
 // This client receives a message
 socket.on('message', function(message) {
   console.log('Client received message:', message);
