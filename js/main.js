@@ -83,7 +83,7 @@ function incoming(){
 }
 
 
-  });
+
 
 
 
@@ -231,7 +231,7 @@ function doAnswer() {
       onCreateSessionDescriptionError
     );
   }
-
+  });
 }
 
 function setLocalAndSendMessage(sessionDescription) {
