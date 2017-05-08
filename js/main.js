@@ -82,7 +82,7 @@ function incoming(){
 
 }
 
-  if(!isInitiator){
+  if !(isInitiator){
     answer.addEventListener("click", function(){
       doAnswer();
     });
