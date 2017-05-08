@@ -83,9 +83,10 @@ function incoming(){
   if (isInitiator != true){
     answer.addEventListener("click", function(){
       console.log("RECIPIENT ONLY!")
-      doAnswer();
+
     });
     }
+    doAnswer();
 }
 
 
