@@ -80,8 +80,11 @@ function incoming(){
   answer.style.color = "white";
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
 
-
-    doAnswer();
+  if(!isInitiator){
+    answer.addEventListener("click", function(){
+      doAnswer();
+    });
+    }
 }
 answer.addEventListener("click", function(){
   console.log("12345");
