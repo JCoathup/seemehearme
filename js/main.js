@@ -82,11 +82,7 @@ function incoming(){
   doAnswer();
 }
 
-  answer.addEventListener("click", function(){
-    if (isInitiator != true){
-    console.log("RECIPIENT ONLY!");
 
-  }
   });
 
 
@@ -225,12 +221,17 @@ function doCall() {
 }
 
 function doAnswer() {
+  answer.addEventListener("click", function(){
+    if (isInitiator != true){
+    console.log("RECIPIENT ONLY!");
     console.log("anyway...");
     console.log('Sending answer to peer.');
     pc.createAnswer().then(
       setLocalAndSendMessage,
       onCreateSessionDescriptionError
     );
+  }
+
 }
 
 function setLocalAndSendMessage(sessionDescription) {
