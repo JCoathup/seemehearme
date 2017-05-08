@@ -80,13 +80,14 @@ function incoming(){
   answer.style.color = "white";
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   doAnswer();
-}
-
   if (isInitiator != true){
     answer.addEventListener("click", function(){
       console.log("RECIPIENT ONLY!")
     });
     }
+}
+
+
 
 // This client receives a message
 socket.on('message', function(message) {
