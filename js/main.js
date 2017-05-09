@@ -219,14 +219,10 @@ function doAnswer() {
     console.log("anyway...");
     console.log('Sending answer to peer.');
     answer.addEventListener("click", function(){
-      if (isInitiator != true){
-      console.log("RECIPIENT ONLY!");
       pc.createAnswer().then(
         setLocalAndSendMessage,
         onCreateSessionDescriptionError
       );
-
-    }
     });
 
 }
