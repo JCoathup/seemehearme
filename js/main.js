@@ -82,15 +82,6 @@ function incoming(){
   doAnswer();
 }
 
-  answer.addEventListener("click", function(){
-    if (isInitiator != true){
-    console.log("RECIPIENT ONLY!");
-
-  }
-  });
-
-
-
 // This client receives a message
 socket.on('message', function(message) {
   console.log('Client received message:', message);
@@ -227,10 +218,17 @@ function doCall() {
 function doAnswer() {
     console.log("anyway...");
     console.log('Sending answer to peer.');
-    pc.createAnswer().then(
-      setLocalAndSendMessage,
-      onCreateSessionDescriptionError
-    );
+    answer.addEventListener("click", function(){
+      if (isInitiator != true){
+      console.log("RECIPIENT ONLY!");
+      pc.createAnswer().then(
+        setLocalAndSendMessage,
+        onCreateSessionDescriptionError
+      );
+
+    }
+    });
+
 }
 
 function setLocalAndSendMessage(sessionDescription) {
