@@ -382,5 +382,5 @@ function removeCN(sdpLines, mLineIndex) {
 
 
 endCall.addEventListener("click", function(){
-  hangup();
+  stop();
 });
