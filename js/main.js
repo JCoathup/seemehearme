@@ -214,18 +214,17 @@ function doCall() {
   console.log('Sending offer to peer');
   pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
 }
-
+    answer.addEventListener("click", function(){
 function doAnswer() {
     console.log("anyway...");
     console.log('Sending answer to peer.');
-    answer.addEventListener("click", function(){
+
       pc.createAnswer().then(
         setLocalAndSendMessage,
         onCreateSessionDescriptionError
       );
-    });
-
 }
+    });
 
 function setLocalAndSendMessage(sessionDescription) {
   // Set Opus as the preferred codec in SDP if Opus is present.
