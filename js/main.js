@@ -214,7 +214,7 @@ function doCall() {
   console.log('Sending offer to peer');
   pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
 }
-    answer.addEventListener("click", function(){
+
 function doAnswer() {
     console.log("anyway...");
     console.log('Sending answer to peer.');
@@ -224,7 +224,7 @@ function doAnswer() {
         onCreateSessionDescriptionError
       );
 }
-    });
+
 
 function setLocalAndSendMessage(sessionDescription) {
   // Set Opus as the preferred codec in SDP if Opus is present.
