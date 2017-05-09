@@ -79,7 +79,12 @@ function incoming(){
   answer.style.backgroundColor = "red";
   answer.style.color = "white";
   controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
-  doAnswer();
+  if (confirm("Answer Call?")){
+    doAnswer();
+  }
+  else{
+    console.log("call rejected");
+  }
 }
 
 // This client receives a message
