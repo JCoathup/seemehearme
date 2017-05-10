@@ -76,8 +76,8 @@ var answered = false;
 var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
-  answer.style.backgroundColor = "red";
-  answer.style.color = "white";
+  //answer.style.backgroundColor = "red";
+  //answer.style.color = "white";
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   if (confirm("Answer Call?")){
     answer.style.backgroundColor = "#999999";
