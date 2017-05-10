@@ -80,7 +80,6 @@ function incoming(){
   answer.style.color = "white";
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   if (confirm("Answer Call?")){
-    var answer = document.getElementById("answer");
     answer.style.backgroundColor = "grey";
     answer.style.color = "black";
     var incomingCall = document.getElementById("incomingCall");
