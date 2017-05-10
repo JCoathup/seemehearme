@@ -78,8 +78,12 @@ function incoming(){
   console.log("INCOMING CALL...!");
   answer.style.backgroundColor = "red";
   answer.style.color = "white";
-  controls.innerHTML += "<div style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
+  controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   if (confirm("Answer Call?")){
+    answer.style.background = "";
+    answer.style.color = "#000000";
+    var incomingCall = document.getElementById("incomingCall");
+    incomingCall.innerHTML = "";   
     doAnswer();
   }
   else{
