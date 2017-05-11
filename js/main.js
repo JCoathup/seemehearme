@@ -384,8 +384,9 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 
-
+/*
 endCall.addEventListener("click", function(){
   console.log("Sorry - ending call....");
   hangup();
 });
+*/
