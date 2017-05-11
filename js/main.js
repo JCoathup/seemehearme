@@ -176,7 +176,7 @@ function maybeStart() {
     console.log('isInitiator', isInitiator);
     if (isInitiator) {
       call.addEventListener("click", function(){
-        hangup.disabled = false;
+        endCall.disabled = false;
         call.disabled = true;
         doCall();
       });
