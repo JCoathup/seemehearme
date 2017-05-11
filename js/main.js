@@ -78,6 +78,7 @@ function sendMessage(message) {
 
 var controls = document.getElementById("controls");
 function incoming(){
+  call.disabled = true;
   console.log("INCOMING CALL...!");
   answer.disabled = false;
   endCall.disabled = true;
@@ -174,6 +175,7 @@ function maybeStart() {
     console.log('isInitiator', isInitiator);
     if (isInitiator) {
       call.addEventListener("click", function(){
+        call.disabled = true;
         doCall();
       });
 
