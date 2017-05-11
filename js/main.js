@@ -79,7 +79,7 @@ var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
   answer.disabled = false;
-  endCall.disabled = false;
+  endCall.disabled = true;
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
@@ -87,6 +87,7 @@ function incoming(){
     var incomingCall = document.getElementById("incomingCall");
     incomingCall.innerHTML = "";
     answer2.disabled = true;
+    hangup2.disbaled = false;
     doAnswer();
   }
   else{
