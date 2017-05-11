@@ -233,7 +233,7 @@ function doAnswer() {
   var hangup2 = document.getElementById("hangup");
   var incomingCall = document.getElementById("incomingCall");
   incomingCall.innerHTML = "";
-  hangup2.disbaled = false;
+  hangup2.disabled = false;
     answer2.disabled = true;
     console.log("anyway...");
     console.log('Sending answer to peer.');
