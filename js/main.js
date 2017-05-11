@@ -79,7 +79,7 @@ var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
   answer.disabled = false;
-  hangup.disabled = false;
+  endCall.disabled = false;
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
