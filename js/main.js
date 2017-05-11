@@ -229,6 +229,11 @@ function doCall() {
 }
 
 function doAnswer() {
+  var answer2 = document.getElementById("answer");
+  var hangup2 = document.getElementById("hangup");
+  var incomingCall = document.getElementById("incomingCall");
+  incomingCall.innerHTML = "";
+  endCall.disbaled = false;
     answer.disabled = true;
     console.log("anyway...");
     console.log('Sending answer to peer.');
