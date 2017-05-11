@@ -393,7 +393,7 @@ document.addEventListener("click", function(){
   if (e.target && e.target.id == "answer"){
     doAnswer();
   }
-})
+});
 
 /*
 endCall.addEventListener("click", function(){
