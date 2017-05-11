@@ -229,6 +229,7 @@ function doCall() {
 }
 
 function doAnswer() {
+    answer.disabled = true;
     console.log("anyway...");
     console.log('Sending answer to peer.');
 
@@ -395,9 +396,3 @@ endCall.addEventListener("click", function(){
   hangup();
 });
 */
-document.addEventListener("click", function(){
-  if (e.target && e.target.id == "answer"){
-    doAnswer();
-    answer.disabled = "true";
-  }
-})
