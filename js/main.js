@@ -390,8 +390,3 @@ endCall.addEventListener("click", function(){
   hangup();
 });
 */
-document.addEventListener("click", function(){
-  if (e.target && e.target.id == "answer"){
-    doAnswer();
-  }
-})
