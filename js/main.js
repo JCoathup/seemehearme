@@ -74,18 +74,16 @@ function sendMessage(message) {
   socket.emit('message', message);
 }
 
-var answered = false;
 var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
   answer.disabled = false;
-  //answer.style.backgroundColor = "red";
-  //answer.style.color = "white";
+  hangup.textContent = "reject";
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
-    answer2.style.backgroundColor = "#999999";
-    answer2.style.color = "#000000";
+    var hangup2 = document.getElementById("hangup");
+    hangup2.textContent = "hang up";
     var incomingCall = document.getElementById("incomingCall");
     incomingCall.innerHTML = "";
     answer2.disabled = true;
