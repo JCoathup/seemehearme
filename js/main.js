@@ -128,6 +128,7 @@ var remoteVideo = document.querySelector('#remoteVideo');
 
 start.addEventListener("click", function(){
   call.disabled = false;
+  start.disabled = true;
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: true
@@ -175,6 +176,7 @@ function maybeStart() {
     console.log('isInitiator', isInitiator);
     if (isInitiator) {
       call.addEventListener("click", function(){
+        hangup.disabled = false;
         call.disabled = true;
         doCall();
       });
