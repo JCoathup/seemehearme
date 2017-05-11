@@ -389,7 +389,7 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 
-document.addEventListener("click", function{
+document.addEventListener("click", function(){
   if (e.target && e.target.id == "answer"){
     doAnswer();
   }
