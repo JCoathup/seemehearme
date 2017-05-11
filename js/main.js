@@ -7,7 +7,7 @@ var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 
 answer.disabled = true;
-hangup.disabled = true;
+endCall.disabled = true;
 
 var isChannelReady = false;
 var isInitiator = false;
