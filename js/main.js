@@ -7,6 +7,7 @@ var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 
 answer.disabled = true;
+hangup.disabled = true;
 
 var isChannelReady = false;
 var isInitiator = false;
@@ -78,9 +79,11 @@ var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
   answer.disabled = false;
+  hangup.disabled = false;
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
   if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
+    var hangup2 = document.getElementById("hangup");
     var incomingCall = document.getElementById("incomingCall");
     incomingCall.innerHTML = "";
     answer2.disabled = true;
@@ -290,6 +293,7 @@ function hangup() {
   console.log('Hanging up.');
   stop();
   sendMessage('bye');
+  hangup.disabled = true;
 }
 
 function handleRemoteHangup() {
