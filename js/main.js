@@ -81,7 +81,7 @@ function incoming(){
   answer.disabled = false;
   endCall.disabled = true;
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
-  if (confirm("Answer Call?")){
+/*   if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
     var hangup2 = document.getElementById("hangup");
     var incomingCall = document.getElementById("incomingCall");
@@ -93,7 +93,7 @@ function incoming(){
   else{
     console.log("call rejected");
   }
-}
+}*/
 
 // This client receives a message
 socket.on('message', function(message) {
@@ -388,6 +388,12 @@ function removeCN(sdpLines, mLineIndex) {
   sdpLines[mLineIndex] = mLineElements.join(' ');
   return sdpLines;
 }
+
+document.addEventListener("click", function{
+  if (e.target && e.target.id == "answer"){
+    doAnswer();
+  }
+})
 
 /*
 endCall.addEventListener("click", function(){
