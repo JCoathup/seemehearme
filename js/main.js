@@ -8,6 +8,7 @@ var endCall = document.getElementById("hangup");
 
 answer.disabled = true;
 endCall.disabled = true;
+call.disabled = true;
 
 var isChannelReady = false;
 var isInitiator = false;
@@ -125,6 +126,7 @@ socket.on('message', function(message) {
 var remoteVideo = document.querySelector('#remoteVideo');
 
 start.addEventListener("click", function(){
+  call.disabled = false;
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: true
