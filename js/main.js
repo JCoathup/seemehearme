@@ -6,6 +6,8 @@ var call = document.getElementById("call");
 var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 
+answer.disabled = true;
+
 var isChannelReady = false;
 var isInitiator = false;
 var isStarted = false;
@@ -76,6 +78,7 @@ var answered = false;
 var controls = document.getElementById("controls");
 function incoming(){
   console.log("INCOMING CALL...!");
+  answer.disabled = false;
   //answer.style.backgroundColor = "red";
   //answer.style.color = "white";
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
@@ -84,6 +87,7 @@ function incoming(){
     answer.style.color = "#000000";
     var incomingCall = document.getElementById("incomingCall");
     incomingCall.innerHTML = "";
+    answer.disabled = true;
     doAnswer();
   }
   else{
