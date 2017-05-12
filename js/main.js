@@ -129,8 +129,6 @@ var remoteVideo = document.querySelector('#remoteVideo');
 start.addEventListener("click", function(){
   call.disabled = false;
   start.disabled = true;
-  navigator.getUserMedia = navigator.getUserMedia ||
-    navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: true
