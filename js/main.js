@@ -91,7 +91,9 @@ document.addEventListener("click", function(e){
   if (e.target && e.target.className == "user"){
     var targetName = e.target.id;
     e.target.style.color = "green";
-    isInitiator = true;
+    socket.emit('create or join', chatName);
+    console.log('Attempted to create or  join room', chatName);
+    //isInitiator = true;
     //dial(chatName);
     socket.emit("select user", chatName, targetName);
     userList.innerHTML += "<button id = 'calling'>CALL</button>";
@@ -107,6 +109,8 @@ socket.on("invite", function(data){
     console.log(user[i].id);
     if (user[i].id == data){
       var room = data;
+      socket.emit('create or join', room);
+      console.log('Attempted to create or  join room', room);
       user[i].innerHTML += "<button id='answering' onclick='doAnswer()'>answer</button>";
     }
   }
@@ -115,7 +119,7 @@ socket.on("invite", function(data){
 
 
 ///////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!
-if (room !== '') {
+if (room !== '' || 'foo') {
   socket.emit('create or join', room);
   console.log('Attempted to create or  join room', room);
 }
@@ -401,11 +405,11 @@ function handleRemoteHangup() {
 }
 
 function stop() {
-  //isStarted = false;
+  isStarted = false;
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
-  //pc = null;
+ pc = null;
 }
 
 ///////////////////////////////////////////
