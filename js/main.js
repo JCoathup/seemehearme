@@ -401,7 +401,7 @@ function handleRemoteHangup() {
 }
 
 function stop() {
-  isStarted = false;
+  //isStarted = false;
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
