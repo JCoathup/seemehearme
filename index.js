@@ -77,6 +77,10 @@ io.sockets.on('connection', function(socket) {
     for(var i=0; i<connections.length; i++){
       if (connections[i].username == callee){
         connections[i].emit("invite", data);
+        socket.join(data);
+      }
+      if (connections[i].username == data){
+        socket.join(data);
       }
     }
   });
