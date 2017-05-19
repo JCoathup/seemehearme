@@ -119,7 +119,7 @@ socket.on("invite", function(data){
 
 
 ///////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!
-if (room !== '' || 'foo') {
+if (room !== '') {
   socket.emit('create or join', room);
   console.log('Attempted to create or  join room', room);
 }
