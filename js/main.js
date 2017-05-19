@@ -91,6 +91,7 @@ document.addEventListener("click", function(e){
   if (e.target && e.target.className == "user"){
     var targetName = e.target.id;
     e.target.style.color = "green";
+    isInitiator = true;
     //dial(chatName);
     socket.emit("select user", chatName, targetName);
     userList.innerHTML += "<button id = 'calling'>CALL</button>";
@@ -404,7 +405,7 @@ function stop() {
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
-  pc = null;
+  //pc = null;
 }
 
 ///////////////////////////////////////////
