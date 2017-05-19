@@ -100,11 +100,12 @@ document.addEventListener("click", function(e){
 });
 socket.on("invite", function(data){
   console.log("invite from..." + data);
+  incoming();
   var user = document.getElementsByClassName("user");
   for (var i=0; i<user.length; i++){
     console.log(user[i].id);
     if (user[i].id == data){
-      room = data;
+      var room = data;
       user[i].innerHTML += "<button id='answering' onclick='doAnswer()'>answer</button>";
     }
   }
@@ -187,7 +188,7 @@ socket.on('message', function(message) {
       maybeStart();
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
-    incoming();
+    //incoming();
     } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
   } else if (message.type === 'candidate' && isStarted) {
@@ -364,7 +365,7 @@ function requestTurn(turnURL) {
         var turnServer = JSON.parse(xhr.responseText);
         console.log('Got TURN server: ', turnServer);
         pcConfig.iceServers.push({
-          'url': 'turn:' + turnServer.username + '@' + turnServer.turn,
+          'url': 'turn:' + turnServer.name + '@' + turnServer.turn,
           'credential': turnServer.password
         });
         turnReady = true;
