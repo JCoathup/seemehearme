@@ -39,11 +39,92 @@ var room = 'foo';
 // room = prompt('Enter room name:');
 
 var socket = io.connect();
+//process username
+var controls = document.getElementById("controls");
+controls.style.display = "none";
 
+var connect = document.getElementById("connect");
+var username = document.getElementById("username");
+var login = document.getElementById("login");
+var chatName;
+//processes username input
+connect.addEventListener("click", function(e){
+  e.preventDefault();
+  if (!username.value == " "){
+    // check for duplicate user
+    socket.on('duplicate username', function(data){
+      if(data == true){
+        username.value="";
+        username.placeholder = "Username taken!";
+        return;
+      }
+    });
+    //no duplicate found... continue
+    socket.emit('new user', username.value, function(){
+      login.innerHTML = "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
+      chatName = username.value;
+      controls.style.display = "block";
+      startCam();
+    });
+  }
+});
+
+//updates online user list
+socket.on('get users', function(data){
+  userList.innerHTML ="<h2>Online:</h2>";
+  console.log(data);
+  for (var i=0; i<data.length; i++){
+    userList.innerHTML += "<li id="+data[i]+" class='user'>"+data[i]+"</li>";
+
+  }
+});
+
+document.addEventListener("click", function(e){
+  if (e.target && e.target.id == "calling"){
+    console.log("call starts here....");
+    console.log("ALERT!!!!!!!" + pc);
+    maybeStart();
+  }
+});
+
+document.addEventListener("click", function(e){
+  if (e.target && e.target.className == "user"){
+    var targetName = e.target.id;
+    e.target.style.color = "green";
+    //dial(chatName);
+    socket.emit("select user", chatName, targetName);
+    userList.innerHTML += "<button id = 'calling'>CALL</button>";
+    dial(chatName);
+  }
+
+});
+socket.on("invite", function(data){
+  console.log("invite from..." + data);
+  var user = document.getElementsByClassName("user");
+  for (var i=0; i<user.length; i++){
+    console.log(user[i].id);
+    if (user[i].id == data){
+      room = data;
+      user[i].innerHTML += "<button id='answering' onclick='doAnswer()'>answer</button>";
+    }
+  }
+  console.log("The room will be:" + room);
+});
+
+
+///////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!
 if (room !== '') {
   socket.emit('create or join', room);
   console.log('Attempted to create or  join room', room);
 }
+
+function dial (room){
+  if (room !== '') {
+    socket.emit('create or join', room);
+    console.log('Attempted to create or  join room', room);
+  }
+}
+
 
 socket.on('created', function(room) {
   console.log('Created room ' + room);
@@ -76,7 +157,6 @@ function sendMessage(message) {
   socket.emit('message', message);
 }
 
-var controls = document.getElementById("controls");
 function incoming(){
   call.disabled = true;
   console.log("INCOMING CALL...!");
@@ -126,9 +206,8 @@ socket.on('message', function(message) {
 
 var remoteVideo = document.querySelector('#remoteVideo');
 
-start.addEventListener("click", function(){
+function startCam(){
   call.disabled = false;
-  start.disabled = true;
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: true
@@ -137,7 +216,7 @@ start.addEventListener("click", function(){
   .catch(function(e) {
     alert('getUserMedia() error: ' + e.name);
   });
-});
+}
 
 
 function gotStream(stream) {
@@ -167,17 +246,20 @@ if (location.hostname !== 'localhost') {
 }
 
 function maybeStart() {
+  console.log("ALERRT!!!!!!!!!!" + pc);
   console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
   if (!isStarted && typeof localStream !== 'undefined' && isChannelReady) {
     console.log('>>>>>> creating peer connection');
     createPeerConnection();
     pc.addStream(localStream);
+    console.log("ALERT!!!!!!" + pc);
     isStarted = true;
     console.log('isInitiator', isInitiator);
     if (isInitiator) {
       call.addEventListener("click", function(){
         endCall.disabled = false;
         call.disabled = true;
+        console.log("ALERT!!!!!!!!!" + pc);
         doCall();
       });
 
@@ -187,6 +269,7 @@ function maybeStart() {
 
 window.onbeforeunload = function() {
   sendMessage('bye');
+
 };
 
 /////////////////////////////////////////////////////////
@@ -238,7 +321,7 @@ function doAnswer() {
   var answer2 = document.getElementById("answer");
   var hangup2 = document.getElementById("hangup");
   var incomingCall = document.getElementById("incomingCall");
-  incomingCall.innerHTML = "";
+  //incomingCall.innerHTML = "";
   hangup2.disabled = false;
     answer2.disabled = true;
     console.log("anyway...");

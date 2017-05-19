@@ -8,9 +8,12 @@ var app = http.createServer(function(req, res) {
   fileServer.serve(req, res);
 }).listen(process.env.OPENSHIFT_NODEJS_PORT || 8000, process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
 
+users = [];
+connections = [];
+
 var io = socketIO.listen(app);
 io.sockets.on('connection', function(socket) {
-
+  connections.push(socket);
   // convenience function to log server messages on the client
   function log() {
     var array = ['Message from server:'];
@@ -58,6 +61,48 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('bye', function(){
     console.log('received bye');
+    users.splice(users.indexOf(socket.username), 1);
+    socket.emit(users);
+    updateUsernames();
+    connections.splice(connections.indexOf(socket), 1);
+    console.log(users);
   });
+  socket.on('select user', function(data, callee){
+    console.log(data);
+    console.log(callee);
+    for(var i=0; i<connections.length; i++){
+      if (connections[i].username == callee){
+        connections[i].emit("invite", data);
+      }
+    }
+  });
+  //on user disconnections
+  socket.on ('disconnect', function(data){
+    users.splice(users.indexOf(socket.username), 1);
+    updateUsernames();
+    connections.splice(connections.indexOf(socket), 1);
+    console.log('Disconnected: %s sockets connected', connections.length);
+  });
+
+  //new user
+socket.on('new user', function(data, callback){
+  for (var a = 0; a < users.length; a++){
+    var duplicate = false;
+    if (data == users[a]){
+      duplicate = true;
+      socket.emit('duplicate username', duplicate);
+      return;
+    }
+  }
+  callback(true);
+  socket.username = data;
+  users.push(socket.username);
+  updateUsernames();
+});
+
+function updateUsernames(){
+  socket.emit("gone home");
+  io.sockets.emit('get users', users);
+}
 
 });

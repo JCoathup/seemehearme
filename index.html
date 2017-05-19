@@ -4,15 +4,19 @@
 <head>
 
   <title>Realtime communication with WebRTC</title>
-
+   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/main.css" />
 
 </head>
 
 <body>
+  <div id="login">
+    <input id="username" type="text" placeholder="enter username">
+    <button id="connect">Connect</button>
+  </div>
   <div id="controls">
     <button id="start">start</button>
-    <button id="call">call</button>
+    <button id="call" onclick="doCall()">call</button>
     <button id="answer" onclick="doAnswer()">answer</button>
     <button id="hangup" onclick="hangup()">hang up</button>
   </div>
@@ -22,6 +26,7 @@
     <video id="remoteVideo" autoplay></video>
   </div>
 
+  <div id="userList"></div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/lib/adapter.js"></script>
   <script src="js/main.js"></script>
