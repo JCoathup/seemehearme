@@ -2,6 +2,7 @@ var os = require('os');
 var nodeStatic = require('node-static');
 var http = require('http');
 var socketIO = require('socket.io');
+var hostroom;
 
 var fileServer = new(nodeStatic.Server)();
 var app = http.createServer(function(req, res) {
@@ -24,10 +25,27 @@ io.sockets.on('connection', function(socket) {
   socket.on('message', function(message) {
     log('Client said: ', message);
     // for a real app, would be room-only (not broadcast)
-    socket.broadcast.emit('message', message);
+    if (message == 'got user media'){
+      io.sockets.in(hostroom).emit('message', message);
+    }
+    else if (message.type == 'offer'){
+      io.sockets.in(hostroom).emit('message', message);
+    }
+    else if (message.type == 'candidate'){
+      io.sockets.in(hostroom).emit('message', message);
+    }
+    else if (message.type == 'answer'){
+      io.sockets.in(hostroom).emit('message', message);
+    }
+    else {
+      socket.broadcast.emit('message', message);
+    }
+    console.log("ROOM = " + hostroom);
+    //io.sockets.in(hostroom).emit('ready');
   });
 
   socket.on('create or join', function(room) {
+    hostroom = room;
     log('Received request to create or join room ' + room);
 
     var numClients = io.sockets.sockets.length;

@@ -6,9 +6,9 @@ var call = document.getElementById("call");
 var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 
-answer.disabled = true;
-endCall.disabled = true;
-call.disabled = true;
+//answer.disabled = true;
+//endCall.disabled = true;
+//call.disabled = true;
 
 var isChannelReady = false;
 var isInitiator = false;
@@ -34,7 +34,7 @@ var sdpConstraints = {
 
 /////////////////////////////////////////////
 
-var room = 'foo';
+var room = 'foo'; //= 'foo';
 // Could prompt for room name:
 // room = prompt('Enter room name:');
 
@@ -83,17 +83,20 @@ document.addEventListener("click", function(e){
   if (e.target && e.target.id == "calling"){
     console.log("call starts here....");
     console.log("ALERT!!!!!!!" + pc);
-    maybeStart();
+    //maybeStart();
   }
 });
 
 document.addEventListener("click", function(e){
+  room = chatName;
   if (e.target && e.target.className == "user"){
+    //maybeStart();
     var targetName = e.target.id;
     e.target.style.color = "green";
-    socket.emit('create or join', chatName);
-    console.log('Attempted to create or  join room', chatName);
-    //isInitiator = true;
+    socket.emit('create or join', room);
+    console.log('Attempted to create or  join room', room);
+    isInitiator = true;
+    //sendMessage('got user media');
     //dial(chatName);
     socket.emit("select user", chatName, targetName);
     userList.innerHTML += "<button id = 'calling'>CALL</button>";
@@ -102,24 +105,28 @@ document.addEventListener("click", function(e){
 
 });
 socket.on("invite", function(data){
+  //sendMessage('got user media');
+  //maybeStart();
   console.log("invite from..." + data);
   incoming();
   var user = document.getElementsByClassName("user");
   for (var i=0; i<user.length; i++){
     console.log(user[i].id);
     if (user[i].id == data){
-      var room = data;
+      room = data;
       socket.emit('create or join', room);
       console.log('Attempted to create or  join room', room);
       user[i].innerHTML += "<button id='answering' onclick='doAnswer()'>answer</button>";
+      sendMessage('got user media');
     }
   }
   console.log("The room will be:" + room);
+  console.log("PC IS...." + pc);
 });
 
 
 ///////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!
-if (room !== '') {
+if (room != '') {
   socket.emit('create or join', room);
   console.log('Attempted to create or  join room', room);
 }
@@ -164,10 +171,11 @@ function sendMessage(message) {
 }
 
 function incoming(){
-  call.disabled = true;
+  console.log(room);
+  //call.disabled = true;
   console.log("INCOMING CALL...!");
-  answer.disabled = false;
-  endCall.disabled = true;
+  //answer.disabled = false;
+  //endCall.disabled = true;
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
 /*  if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
@@ -187,6 +195,7 @@ function incoming(){
 socket.on('message', function(message) {
   console.log('Client received message:', message);
   if (message === 'got user media') {
+    console.log(room);
     maybeStart();
   } else if (message.type === 'offer') {
     if (!isInitiator && !isStarted) {
@@ -213,7 +222,7 @@ socket.on('message', function(message) {
 var remoteVideo = document.querySelector('#remoteVideo');
 
 function startCam(){
-  call.disabled = false;
+  //call.disabled = false;
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: true
@@ -229,7 +238,7 @@ function gotStream(stream) {
   console.log('Adding local stream.');
   localVideo.src = window.URL.createObjectURL(stream);
   localStream = stream;
-  sendMessage('got user media');
+  //sendMessage('got user media');
   if (isInitiator) {
       maybeStart();
   }
@@ -263,8 +272,8 @@ function maybeStart() {
     console.log('isInitiator', isInitiator);
     if (isInitiator) {
       call.addEventListener("click", function(){
-        endCall.disabled = false;
-        call.disabled = true;
+        //endCall.disabled = false;
+        //call.disabled = true;
         console.log("ALERT!!!!!!!!!" + pc);
         doCall();
       });
@@ -319,6 +328,7 @@ function handleCreateOfferError(event) {
 }
 
 function doCall() {
+  console.log(room);
   console.log('Sending offer to peer');
   pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
 }
@@ -328,9 +338,9 @@ function doAnswer() {
   var hangup2 = document.getElementById("hangup");
   var incomingCall = document.getElementById("incomingCall");
   //incomingCall.innerHTML = "";
-  hangup2.disabled = false;
-    answer2.disabled = true;
-    console.log("anyway...");
+  //hangup2.disabled = false;
+    //answer2.disabled = true;
+    console.log(pc);
     console.log('Sending answer to peer.');
 
       pc.createAnswer().then(
@@ -395,7 +405,7 @@ function hangup() {
   console.log('Hanging up.');
   stop();
   sendMessage('bye');
-  hangup.disabled = true;
+  //hangup.disabled = true;
 }
 
 function handleRemoteHangup() {
@@ -409,7 +419,9 @@ function stop() {
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
- pc = null;
+ //pc = null;
+ room = 'foo';
+ socket.emit('create or join', room);
 }
 
 ///////////////////////////////////////////
