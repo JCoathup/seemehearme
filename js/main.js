@@ -1,14 +1,13 @@
 'use strict';
 
 //declare control buttons
-var start = document.getElementById("start");
 var call = document.getElementById("call");
 var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 
-//answer.disabled = true;
-//endCall.disabled = true;
-//call.disabled = true;
+call.disabled = true;
+answer.disabled = true;
+hangup.disabled = true;
 
 var isChannelReady = false;
 var isInitiator = false;
@@ -86,29 +85,26 @@ document.addEventListener("click", function(e){
     //maybeStart();
   }
 });
-
+var targetName;
 document.addEventListener("click", function(e){
   room = chatName;
   if (e.target && e.target.className == "user"){
-    //maybeStart();
-    var targetName = e.target.id;
     e.target.style.color = "green";
+    targetName = e.target.id;
     socket.emit('create or join', room);
     console.log('Attempted to create or  join room', room);
     isInitiator = true;
-    //sendMessage('got user media');
-    //dial(chatName);
     socket.emit("select user", chatName, targetName);
-    userList.innerHTML += "<button id = 'calling'>CALL</button>";
     dial(chatName);
+    call.disabled = false;
+    hangup.disabled = false;
   }
 
 });
 socket.on("invite", function(data){
-  //sendMessage('got user media');
-  //maybeStart();
+  targetName = data;
   console.log("invite from..." + data);
-  incoming();
+  incoming(data);
   var user = document.getElementsByClassName("user");
   for (var i=0; i<user.length; i++){
     console.log(user[i].id);
@@ -116,7 +112,6 @@ socket.on("invite", function(data){
       room = data;
       socket.emit('create or join', room);
       console.log('Attempted to create or  join room', room);
-      user[i].innerHTML += "<button id='answering' onclick='doAnswer()'>answer</button>";
       sendMessage('got user media');
     }
   }
@@ -170,13 +165,16 @@ function sendMessage(message) {
   socket.emit('message', message);
 }
 
-function incoming(){
+function incoming(name){
   console.log(room);
   //call.disabled = true;
-  console.log("INCOMING CALL...!");
+  console.log("INCOMING CALL...! From" + name);
   //answer.disabled = false;
   //endCall.disabled = true;
-  controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>incoming call!!!</div>";
+  answer.disabled = false;
+  hangup.disabled = false;
+  call.disabled = true;
+  controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>INCOMING CALL!!! from "+name+"</div>";
 /*  if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
     var hangup2 = document.getElementById("hangup");
@@ -205,6 +203,8 @@ socket.on('message', function(message) {
     //incoming();
     } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
+     localVideo.style.width = "20%";
+     remoteVideo.style.width = "100%";
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
       sdpMLineIndex: message.label,
@@ -337,9 +337,10 @@ function doAnswer() {
   var answer2 = document.getElementById("answer");
   var hangup2 = document.getElementById("hangup");
   var incomingCall = document.getElementById("incomingCall");
-  //incomingCall.innerHTML = "";
-  //hangup2.disabled = false;
-    //answer2.disabled = true;
+  incomingCall.innerHTML = "";
+  hangup.disabled = false;
+  answer.disabled = true;
+  call.disabled = true;
     console.log(pc);
     console.log('Sending answer to peer.');
 
@@ -347,6 +348,9 @@ function doAnswer() {
         setLocalAndSendMessage,
         onCreateSessionDescriptionError
       );
+      localVideo.style.width = "20%";
+      remoteVideo.style.width = "100%";
+
 }
 
 
@@ -405,7 +409,7 @@ function hangup() {
   console.log('Hanging up.');
   stop();
   sendMessage('bye');
-  //hangup.disabled = true;
+
 }
 
 function handleRemoteHangup() {
@@ -416,9 +420,15 @@ function handleRemoteHangup() {
 
 function stop() {
   isStarted = false;
+  var resetUserColor = document.getElementById(targetName).style.color = "#ffffff";
+  localVideo.style.width = "100%";
+  //remoteVideo.style.width = "0%";
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
+  hangup.disabled = true;
+  call.disabled = true;
+  answer.disabled = true;
  //pc = null;
  room = 'foo';
  socket.emit('create or join', room);
