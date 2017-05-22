@@ -13,6 +13,9 @@ body {
 video{
   width:100%;
 }
+button:disabled{
+  background-color:#666666;
+}
 #localVideo{
   z-index:1;
 }
