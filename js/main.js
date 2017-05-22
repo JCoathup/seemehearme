@@ -335,12 +335,13 @@ function doCall() {
 }
 
 function doAnswer() {
+  answer.disabled = true;
   var answer2 = document.getElementById("answer");
   var hangup2 = document.getElementById("hangup");
   var incomingCall = document.getElementById("incomingCall");
   incomingCall.innerHTML = "";
   endCall.disabled = false;
-  answer.disabled = true;
+  //answer.disabled = true;
   call.disabled = true;
     console.log(pc);
     console.log('Sending answer to peer.');
