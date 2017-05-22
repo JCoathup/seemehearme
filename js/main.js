@@ -7,7 +7,7 @@ var endCall = document.getElementById("hangup");
 
 call.disabled = true;
 answer.disabled = true;
-endcall.disabled = true;
+endCall.disabled = true;
 
 var isChannelReady = false;
 var isInitiator = false;
@@ -97,7 +97,7 @@ document.addEventListener("click", function(e){
     socket.emit("select user", chatName, targetName);
     dial(chatName);
     call.disabled = false;
-    endcall.disabled = false;
+    endCall.disabled = false;
   }
 
 });
