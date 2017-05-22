@@ -421,6 +421,9 @@ function handleRemoteHangup() {
 }
 
 function stop() {
+  endCall.disabled = true;
+  call.disabled = true;
+  answer.disabled = true;
   isStarted = false;
   var resetUserColor = document.getElementById(targetName).style.color = "#ffffff";
   localVideo.style.width = "100%";
@@ -428,9 +431,7 @@ function stop() {
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
-  endCall.disabled = true;
-  call.disabled = true;
-  answer.disabled = true;
+
  //pc = null;
  room = 'foo';
  socket.emit('create or join', room);
