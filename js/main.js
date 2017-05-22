@@ -328,6 +328,7 @@ function handleCreateOfferError(event) {
 }
 
 function doCall() {
+  call.disabled = true;
   console.log(room);
   console.log('Sending offer to peer');
   pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
