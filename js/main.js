@@ -7,7 +7,7 @@ var endCall = document.getElementById("hangup");
 
 call.disabled = true;
 answer.disabled = true;
-hangup.disabled = true;
+endcall.disabled = true;
 
 var isChannelReady = false;
 var isInitiator = false;
@@ -97,7 +97,7 @@ document.addEventListener("click", function(e){
     socket.emit("select user", chatName, targetName);
     dial(chatName);
     call.disabled = false;
-    hangup.disabled = false;
+    endcall.disabled = false;
   }
 
 });
@@ -172,7 +172,7 @@ function incoming(name){
   //answer.disabled = false;
   //endCall.disabled = true;
   answer.disabled = false;
-  hangup.disabled = false;
+  endCall.disabled = false;
   call.disabled = true;
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>INCOMING CALL!!! from "+name+"</div>";
 /*  if (confirm("Answer Call?")){
@@ -338,7 +338,7 @@ function doAnswer() {
   var hangup2 = document.getElementById("hangup");
   var incomingCall = document.getElementById("incomingCall");
   incomingCall.innerHTML = "";
-  hangup.disabled = false;
+  endCall.disabled = false;
   answer.disabled = true;
   call.disabled = true;
     console.log(pc);
@@ -426,7 +426,7 @@ function stop() {
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
-  hangup.disabled = true;
+  endCall.disabled = true;
   call.disabled = true;
   answer.disabled = true;
  //pc = null;
