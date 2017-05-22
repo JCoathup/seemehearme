@@ -43,9 +43,7 @@ io.sockets.on('connection', function(socket) {
     console.log("ROOM = " + hostroom);
     //io.sockets.in(hostroom).emit('ready');
   });
-  socket.on("conversation", function(){
-    io.sockets.in(room).emit('startedConvo');
-  });
+
 
 
   socket.on('create or join', function(room) {
