@@ -13,7 +13,7 @@ body {
 video{
   width:100%;
 }
-#answer:disabled, hangup:disabled, #call:disabled{
+#answer:disabled, #hangup:disabled, #call:disabled{
   background-color:#666666;
 }
 #localVideo{
