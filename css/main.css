@@ -10,8 +10,17 @@ body {
   height:auto;
   position:relative;
 }
-video{
+#container{
+  width:80%;
+  height:auto;
+  margin:2% auto;
+  }
+#videos{
   width:100%;
+}
+#userList{
+  width:30%;
+  float:left;
 }
 #answer:disabled, #hangup:disabled, #call:disabled{
   background-color:#666666;

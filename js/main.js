@@ -97,7 +97,8 @@ document.addEventListener("click", function(e){
     socket.emit("select user", chatName, targetName);
     dial(chatName);
     call.disabled = false;
-    endCall.disabled = false;
+    endCall.disabled = true;
+    answer.disabled = true;
   }
 
 });
@@ -329,19 +330,20 @@ function handleCreateOfferError(event) {
 
 function doCall() {
   call.disabled = true;
+  endCall.disabled = false;
+  answer.disabled = true;
   console.log(room);
   console.log('Sending offer to peer');
   pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
 }
 
 function doAnswer() {
-  answer.disabled = true;
-  var answer2 = document.getElementById("answer");
-  var hangup2 = document.getElementById("hangup");
-  var incomingCall = document.getElementById("incomingCall");
+  var answer = document.getElementById("answer");
+  //var hangup2 = document.getElementById("hangup");
+  //var incomingCall = document.getElementById("incomingCall");
   incomingCall.innerHTML = "";
   endCall.disabled = false;
-  //answer.disabled = true;
+  answer.disabled = true;
   call.disabled = true;
     console.log(pc);
     console.log('Sending answer to peer.');
@@ -421,6 +423,7 @@ function handleRemoteHangup() {
 }
 
 function stop() {
+  var endCall = document.getElementById("hangup");
   endCall.disabled = true;
   call.disabled = true;
   answer.disabled = true;
