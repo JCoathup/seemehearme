@@ -40,7 +40,8 @@ var room = 'foo'; //= 'foo';
 var socket = io.connect();
 //process username
 var controls = document.getElementById("controls");
-controls.style.display = "none";
+var container = document.getElementById("container");
+container.style.display = "none";
 
 var connect = document.getElementById("connect");
 var username = document.getElementById("username");
@@ -62,7 +63,7 @@ connect.addEventListener("click", function(e){
     socket.emit('new user', username.value, function(){
       login.innerHTML = "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
       chatName = username.value;
-      controls.style.display = "block";
+      container.style.display = "block";
       startCam();
     });
   }

@@ -4,29 +4,102 @@ body {
 }
 
 #videos {
-  width: 75%;
-  float:left;
   background-color:#000000;
   height:auto;
   position:relative;
+  width:60%;
+
 }
 #container{
   width:80%;
-  height:auto;
+  height:76vh;
   margin:2% auto;
+  border: #ccc 1px solid;
+  overflow:hidden;
+  background-color:#333;
   }
-#videos{
-  width:100%;
+  #login{
+    width:80%;
+    margin:1% auto;
+  }
+  #login p{
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+  }
+input{
+  width:75%;
+  margin:0;
+  border:none;
+  padding:1%;
+}
+#connect{
+  width:22.5%;
+  margin:0;
+  border:none;
+  padding:1%;
+  background-color:#ff0000;
+  color:#fff;
+  font-weight:bold;
+}
+#incomingCall{
+  padding:3%;
 }
 #userList{
   width:30%;
-  float:left;
+  padding:3%;
+  position:relative;
+}
+#userList li{
+  list-style-type:none;
+  margin-top:!%;
 }
 #answer:disabled, #hangup:disabled, #call:disabled{
-  background-color:#666666;
+  border:none;
+  padding:0;
+  background-color:#333;
+  display:hidden;
+  background-color:transparent;
+  margin:2% 5%;
+  padding:1%;
+  width:96px;
+  height:96px;
+}
+#answer:enabled{
+  width:96px;
+  height:96px;
+  margin:2% 5%;
+  padding:1%;
+  display:inline-block;
+  background: url("../images/answer.png") no-repeat scroll 0 0 transparent;
+  border:none;
+}
+#call:enabled{
+  width:96px;
+  height:96px;
+  margin:2% 5%;
+  padding:1%;
+ border:none;
+  display:inline-block;
+  background: url("../images/call.png") no-repeat scroll 0 0 transparent;
+}
+#hangup:enabled{
+width:96px;
+height:96px;
+margin:2% 5%;
+padding:1%;
+border:none;
+  display:inline-block;
+  background: url("../images/hangup.png") no-repeat scroll 0 0 transparent;
+}
+#call:enabled:hover, #hangup:enabled:hover, #answer:enabled:hover{
+  opacity:0.5;
 }
 #localVideo{
   z-index:1;
+  width:100%;
+  margin:0;
+  overflow:visible;
 }
 #localVideo, #remoteVideo{
   position:absolute;
@@ -34,25 +107,10 @@ body {
   left:0;
 }
 #controls {
-  width:25%;
-  background-color:#999999;
   float:right;
   color:#ffffff;
   height:auto;
-}
-#call{
-  background-color: green;
-}
-#answer{
-  background-color: blue;
-}
-#hangup{
-  background-color: red;
-}
-#hangup, #answer, #call{
-  color:#fff;
-  padding:2%;
-  width:32%;
+  width:40%;
 }
 #hangupMessage{
   color:#fff;
