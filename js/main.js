@@ -177,6 +177,9 @@ function incoming(name){
   endCall.disabled = false;
   call.disabled = true;
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>INCOMING CALL!!! from "+name+"</div>";
+  //var controls = document.getElementById("controls");
+  controls.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
+
 /*  if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
     var hangup2 = document.getElementById("hangup");

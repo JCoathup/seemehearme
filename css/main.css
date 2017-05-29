@@ -73,6 +73,10 @@ input{
   display:inline-block;
   background: url("../images/answer.png") no-repeat scroll 0 0 transparent;
   border:none;
+  animation: fadeIn 1s infinite alternate;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
 }
 #call:enabled{
   width:96px;
