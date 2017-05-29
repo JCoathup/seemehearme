@@ -4,6 +4,7 @@
 var call = document.getElementById("call");
 var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
+var ringer = document.getElementById("ringer");
 
 call.disabled = true;
 answer.disabled = true;
@@ -91,7 +92,7 @@ document.addEventListener("click", function(e){
   room = chatName;
   if (e.target && e.target.className == "user"){
     e.target.style.color = "green";
-    targetName = e.target.id;
+ targetName = e.target.id;
     socket.emit('create or join', room);
     console.log('Attempted to create or  join room', room);
     isInitiator = true;
@@ -178,7 +179,7 @@ function incoming(name){
   call.disabled = true;
   controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>INCOMING CALL!!! from "+name+"</div>";
   //var controls = document.getElementById("controls");
-  controls.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
+  ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 
 /*  if (confirm("Answer Call?")){
     var answer2 = document.getElementById("answer");
@@ -342,6 +343,7 @@ function doCall() {
 }
 
 function doAnswer() {
+  ringer.innerHTML = "";
   var answer = document.getElementById("answer");
   //var hangup2 = document.getElementById("hangup");
   //var incomingCall = document.getElementById("incomingCall");
@@ -414,6 +416,7 @@ function handleRemoteStreamRemoved(event) {
 }
 
 function hangup() {
+  ringer.innerHTML = "";
   console.log('Hanging up.');
   stop();
   sendMessage('bye');
