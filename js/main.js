@@ -424,6 +424,7 @@ function hangup() {
 }
 
 function handleRemoteHangup() {
+  ringer.innerHTML = "";
   console.log('Session terminated.');
   stop();
   isInitiator = false;

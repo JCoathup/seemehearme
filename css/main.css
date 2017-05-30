@@ -58,12 +58,20 @@ input{
   border:none;
   padding:0;
   background-color:#333;
-  display:hidden;
   background-color:transparent;
   margin:2% 5%;
   padding:1%;
   width:96px;
   height:96px;
+}
+#answer:disabled{
+  background: url("../images/answerDisabled.png") no-repeat scroll 0 0 transparent;
+}
+#call:disabled{
+  background: url("../images/callDisabled.png") no-repeat scroll 0 0 transparent;
+}
+#hangup:disabled{
+  background: url("../images/hangupDisabled.png") no-repeat scroll 0 0 transparent;
 }
 #answer:enabled{
   width:96px;
