@@ -5,6 +5,7 @@ var call = document.getElementById("call");
 var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 var ringer = document.getElementById("ringer");
+var panel = document.getElementById("panel");
 
 call.disabled = true;
 answer.disabled = true;
@@ -92,7 +93,8 @@ document.addEventListener("click", function(e){
   room = chatName;
   if (e.target && e.target.className == "user"){
     e.target.style.color = "green";
- targetName = e.target.id;
+    e.target.style.borderColor = "green";
+    targetName = e.target.id;
     socket.emit('create or join', room);
     console.log('Attempted to create or  join room', room);
     isInitiator = true;
@@ -101,6 +103,7 @@ document.addEventListener("click", function(e){
     call.disabled = false;
     endCall.disabled = true;
     answer.disabled = true;
+    console.log("YES!!!!!");
   }
 
 });
@@ -177,7 +180,7 @@ function incoming(name){
   answer.disabled = false;
   endCall.disabled = false;
   call.disabled = true;
-  controls.innerHTML += "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>INCOMING CALL!!! from "+name+"</div>";
+  panel.innerHTML = "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>"+name+" caling...</div>";
   //var controls = document.getElementById("controls");
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 
@@ -209,6 +212,7 @@ socket.on('message', function(message) {
     //incoming();
     } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
+     call.disabled = "true";
      localVideo.style.width = "20%";
      remoteVideo.style.width = "100%";
   } else if (message.type === 'candidate' && isStarted) {
@@ -277,12 +281,12 @@ function maybeStart() {
     isStarted = true;
     console.log('isInitiator', isInitiator);
     if (isInitiator) {
-      call.addEventListener("click", function(){
+  /*    call.addEventListener("click", function(){
         //endCall.disabled = false;
         //call.disabled = true;
-        console.log("ALERT!!!!!!!!!" + pc);
+        console.log("ALERT!!!!!!!!!" + pc); */
         doCall();
-      });
+    //  });
 
     }
   }
@@ -334,7 +338,7 @@ function handleCreateOfferError(event) {
 }
 
 function doCall() {
-  call.disabled = true;
+  call.disabled = false;
   endCall.disabled = false;
   answer.disabled = true;
   console.log(room);
@@ -344,10 +348,12 @@ function doCall() {
 
 function doAnswer() {
   ringer.innerHTML = "";
+  //var tester = document.getElementById("panel").innerHTML = "";
   var answer = document.getElementById("answer");
   //var hangup2 = document.getElementById("hangup");
   //var incomingCall = document.getElementById("incomingCall");
-  incomingCall.innerHTML = "";
+  //incomingCall.innerHTML = "";
+  panel.innerHTML = "";
   endCall.disabled = false;
   answer.disabled = true;
   call.disabled = true;
@@ -431,12 +437,14 @@ function handleRemoteHangup() {
 }
 
 function stop() {
+  panel.innerHTML = "";
   var endCall = document.getElementById("hangup");
   endCall.disabled = true;
   call.disabled = true;
   answer.disabled = true;
   isStarted = false;
   var resetUserColor = document.getElementById(targetName).style.color = "#ffffff";
+  document.getElementById(targetName).style.borderColor = "#999999";
   localVideo.style.width = "100%";
   //remoteVideo.style.width = "0%";
   // isAudioMuted = false;

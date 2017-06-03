@@ -129,3 +129,13 @@ border:none;
   margin:15% auto;
   text-align:center;
 }
+li{
+  padding:2% 2%;
+  width:96%;
+  border:1px solid #999;
+  border-radius:10px;
+  margin:1% 0%;
+}
+#panel{
+  height:20px;
+}
