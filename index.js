@@ -104,6 +104,26 @@ io.sockets.on('connection', function(socket) {
       }
     }
   });
+  //in call indicator
+  socket.on('in call', function(host, guest){
+    for(var l=0; l<connections.length; l++){
+      if (connections[l].username != host){
+        if (connections[l].username != guest){
+          connections[l].emit('busy', host, guest);
+        }
+      }
+    }
+  });
+  //call finished indicator
+  socket.on('ended call', function(host, guest){
+    for(var l=0; l<connections.length; l++){
+      if (connections[l].username != host){
+        if (connections[l].username != guest){
+          connections[l].emit('call over', host, guest);
+        }
+      }
+    }
+  });
   //on user disconnections
   socket.on ('disconnect', function(data){
     users.splice(users.indexOf(socket.username), 1);

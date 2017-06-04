@@ -18,7 +18,7 @@ var localStream;
 var pc;
 var remoteStream;
 var turnReady;
-
+var targetName;
 var pcConfig = {
   'iceServers': [{
     'url': 'stun:stun.l.google.com:19302'
@@ -71,27 +71,41 @@ connect.addEventListener("click", function(e){
   }
 });
 
+//indicate user is busy on call
+socket.on("busy", function(host, guest){
+  document.getElementById(host).style.color = "orange";
+  document.getElementById(host).style.borderColor = "orange";
+  document.getElementById(guest).style.color = "orange";
+  document.getElementById(guest).style.borderColor = "orange";
+});
+
+//indicate user no longer busy on call
+socket.on("call over", function(host, guest){
+  document.getElementById(host).style.color = "#ffffff";
+  document.getElementById(host).style.borderColor = "#999999";
+  document.getElementById(guest).style.color = "#ffffff";
+  document.getElementById(guest).style.borderColor = "#999999";
+});
+
 //updates online user list
 socket.on('get users', function(data){
   userList.innerHTML ="<h2>Online:</h2>";
   console.log(data);
   for (var i=0; i<data.length; i++){
     userList.innerHTML += "<li id="+data[i]+" class='user'>"+data[i]+"</li>";
-
   }
 });
 
-document.addEventListener("click", function(e){
-  if (e.target && e.target.id == "calling"){
-    console.log("call starts here....");
-    console.log("ALERT!!!!!!!" + pc);
-    //maybeStart();
-  }
-});
-var targetName;
 document.addEventListener("click", function(e){
   room = chatName;
   if (e.target && e.target.className == "user"){
+    if(e.target.style.color == "orange"){
+      panel.innerHTML = "<div id = 'callbusy' style='color:orange; font-weight:bold;'>" +e.target.id+" is busy in a call</div>";
+      setTimeout(function(){
+        panel.innerHTML = "";
+      }, 1500);
+      return;
+    }
     e.target.style.color = "green";
     e.target.style.borderColor = "green";
     targetName = e.target.id;
@@ -105,8 +119,8 @@ document.addEventListener("click", function(e){
     answer.disabled = true;
     panel.innerHTML = "<div id='callingWho' style='color:green; font-weight:bold;'>calling " + targetName + "</div";
   }
-
 });
+
 socket.on("invite", function(data){
   targetName = data;
   console.log("invite from..." + data);
@@ -124,7 +138,6 @@ socket.on("invite", function(data){
   console.log("The room will be:" + room);
   console.log("PC IS...." + pc);
 });
-
 
 ///////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!
 if (room != '') {
@@ -172,45 +185,24 @@ function sendMessage(message) {
 }
 
 function incoming(name){
-  console.log(room);
-  //call.disabled = true;
-  console.log("INCOMING CALL...! From" + name);
-  //answer.disabled = false;
-  //endCall.disabled = true;
   answer.disabled = false;
   endCall.disabled = false;
   call.disabled = true;
   panel.innerHTML = "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>"+name+" caling...</div>";
-  //var controls = document.getElementById("controls");
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
-
-/*  if (confirm("Answer Call?")){
-    var answer2 = document.getElementById("answer");
-    var hangup2 = document.getElementById("hangup");
-    var incomingCall = document.getElementById("incomingCall");
-    incomingCall.innerHTML = "";
-    answer2.disabled = true;
-    hangup2.disbaled = false;
-    doAnswer();
-  }
-  else{
-    console.log("call rejected");
-  } */
 }
 
 // This client receives a message
 socket.on('message', function(message) {
   console.log('Client received message:', message);
   if (message === 'got user media') {
-    console.log(room);
     maybeStart();
   } else if (message.type === 'offer') {
     if (!isInitiator && !isStarted) {
       maybeStart();
     }
     pc.setRemoteDescription(new RTCSessionDescription(message));
-    //incoming();
-    } else if (message.type === 'answer' && isStarted) {
+  } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
      call.disabled = "true";
      localVideo.style.width = "20%";
@@ -229,11 +221,9 @@ socket.on('message', function(message) {
 
 ////////////////////////////////////////////////////
 
-
 var remoteVideo = document.querySelector('#remoteVideo');
 
 function startCam(){
-  //call.disabled = false;
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: true
@@ -244,20 +234,14 @@ function startCam(){
   });
 }
 
-
 function gotStream(stream) {
   console.log('Adding local stream.');
   localVideo.src = window.URL.createObjectURL(stream);
   localStream = stream;
-  //sendMessage('got user media');
   if (isInitiator) {
       maybeStart();
   }
 }
-
-
-
-
 
 var constraints = {
   video: true
@@ -272,23 +256,15 @@ if (location.hostname !== 'localhost') {
 }
 
 function maybeStart() {
-  console.log("ALERRT!!!!!!!!!!" + pc);
   console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
   if (!isStarted && typeof localStream !== 'undefined' && isChannelReady) {
     console.log('>>>>>> creating peer connection');
     createPeerConnection();
     pc.addStream(localStream);
-    console.log("ALERT!!!!!!" + pc);
     isStarted = true;
     console.log('isInitiator', isInitiator);
     if (isInitiator) {
-  /*    call.addEventListener("click", function(){
-        //endCall.disabled = false;
-        //call.disabled = true;
-        console.log("ALERT!!!!!!!!!" + pc); */
         doCall();
-    //  });
-
     }
   }
 }
@@ -353,27 +329,21 @@ function doAnswer() {
   inCall.style.color = "green";
   inCall.style.borderColor = "green";
   ringer.innerHTML = "";
-  //var tester = document.getElementById("panel").innerHTML = "";
   var answer = document.getElementById("answer");
-  //var hangup2 = document.getElementById("hangup");
-  //var incomingCall = document.getElementById("incomingCall");
-  //incomingCall.innerHTML = "";
   panel.innerHTML = "";
+  socket.emit("in call", targetName, chatName);
   endCall.disabled = false;
   answer.disabled = true;
   call.disabled = true;
     console.log(pc);
     console.log('Sending answer to peer.');
-
       pc.createAnswer().then(
         setLocalAndSendMessage,
         onCreateSessionDescriptionError
       );
       localVideo.style.width = "20%";
       remoteVideo.style.width = "100%";
-
 }
-
 
 function setLocalAndSendMessage(sessionDescription) {
   // Set Opus as the preferred codec in SDP if Opus is present.
@@ -448,6 +418,7 @@ function stop() {
   call.disabled = true;
   answer.disabled = true;
   isStarted = false;
+  socket.emit("ended call", chatName, targetName);
   var resetUserColor = document.getElementById(targetName).style.color = "#ffffff";
   document.getElementById(targetName).style.borderColor = "#999999";
   localVideo.style.width = "100%";
@@ -489,10 +460,8 @@ function preferOpus(sdp) {
       break;
     }
   }
-
   // Remove CN in m line and sdp.
   sdpLines = removeCN(sdpLines, mLineIndex);
-
   sdp = sdpLines.join('\r\n');
   return sdp;
 }
@@ -534,14 +503,6 @@ function removeCN(sdpLines, mLineIndex) {
       sdpLines.splice(i, 1);
     }
   }
-
   sdpLines[mLineIndex] = mLineElements.join(' ');
   return sdpLines;
 }
-
-/*
-endCall.addEventListener("click", function(){
-  console.log("Sorry - ending call....");
-  hangup();
-});
-*/
