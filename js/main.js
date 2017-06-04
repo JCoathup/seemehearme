@@ -103,7 +103,7 @@ document.addEventListener("click", function(e){
     call.disabled = false;
     endCall.disabled = true;
     answer.disabled = true;
-    console.log("YES!!!!!");
+    panel.innerHTML = "<div id='callingWho' style='color:green; font-weight:bold;'>calling " + targetName + "</div";
   }
 
 });
@@ -215,6 +215,7 @@ socket.on('message', function(message) {
      call.disabled = "true";
      localVideo.style.width = "20%";
      remoteVideo.style.width = "100%";
+     panel.innerHTML ="";
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
       sdpMLineIndex: message.label,
@@ -331,6 +332,7 @@ function handleRemoteStreamAdded(event) {
     console.log('Remote stream added.');
     remoteVideo.src = window.URL.createObjectURL(event.stream);
     remoteStream = event.stream;
+    panel.innerHTML = "";
 }
 
 function handleCreateOfferError(event) {
@@ -347,6 +349,9 @@ function doCall() {
 }
 
 function doAnswer() {
+  var inCall = document.getElementById(targetName);
+  inCall.style.color = "green";
+  inCall.style.borderColor = "green";
   ringer.innerHTML = "";
   //var tester = document.getElementById("panel").innerHTML = "";
   var answer = document.getElementById("answer");
