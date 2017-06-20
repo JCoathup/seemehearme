@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>See me hear me</title>
+   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/main.css" />
+
+</head>
+
+<body>
+  <div id="login">
+    <input id="username" type="text" placeholder="enter username">
+    <button id="connect">Connect</button>
+  </div>
+  <div id = "container">
+
+    <div id="videos">
+      <video id="localVideo" autoplay muted></video>
+      <video id="remoteVideo" autoplay></video>
+    </div>
+    <div id="controls">
+      <div id="ringer"></div>
+      <button id="call"></button>
+      <button id="answer" onclick="doAnswer()"></button>
+      <button id="hangup" onclick="hangup()"></button>
+      <div id="panel"></div>
+      <div id="userList"></div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/lib/adapter.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
