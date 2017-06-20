@@ -234,7 +234,7 @@ socket.on('message', function(message) {
 
 function startCam(){
   navigator.mediaDevices.getUserMedia({
-    audio: false,
+    audio: true,
     video: true
   })
   .then(gotStream)
