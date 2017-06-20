@@ -7,11 +7,15 @@ var endCall = document.getElementById("hangup");
 var ringer = document.getElementById("ringer");
 var panel = document.getElementById("panel");
 
+<<<<<<< HEAD
 //disable buttons on start
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 call.disabled = true;
 answer.disabled = true;
 endCall.disabled = true;
 
+<<<<<<< HEAD
 //declare username and login variables
 var connect = document.getElementById("connect");
 var username = document.getElementById("username");
@@ -22,6 +26,8 @@ var controls = document.getElementById("controls");
 var container = document.getElementById("container");
 container.style.display = "none";
 
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 var isChannelReady = false;
 var isInitiator = false;
 var isStarted = false;
@@ -36,9 +42,12 @@ var pcConfig = {
   }]
 };
 
+<<<<<<< HEAD
 var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
 
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 // Set up audio and video regardless of what devices are present.
 var sdpConstraints = {
   'mandatory': {
@@ -49,6 +58,7 @@ var sdpConstraints = {
 
 /////////////////////////////////////////////
 
+<<<<<<< HEAD
 //declare room - all new connections go here
 var room = 'foo';
 
@@ -56,6 +66,23 @@ var room = 'foo';
 var socket = io.connect();
 
 //processes username input then starts user cam
+=======
+var room = 'foo'; //= 'foo';
+// Could prompt for room name:
+// room = prompt('Enter room name:');
+
+var socket = io.connect();
+//process username
+var controls = document.getElementById("controls");
+var container = document.getElementById("container");
+container.style.display = "none";
+
+var connect = document.getElementById("connect");
+var username = document.getElementById("username");
+var login = document.getElementById("login");
+var chatName;
+//processes username input
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 connect.addEventListener("click", function(e){
   e.preventDefault();
   if (!username.value == " "){
@@ -96,15 +123,24 @@ socket.on("call over", function(host, guest){
 //updates online user list
 socket.on('get users', function(data){
   userList.innerHTML ="<h2>Online:</h2>";
+<<<<<<< HEAD
+=======
+  console.log(data);
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
   for (var i=0; i<data.length; i++){
     userList.innerHTML += "<li id="+data[i]+" class='user'>"+data[i]+"</li>";
   }
 });
 
+<<<<<<< HEAD
 //listens for user to be dialled
 document.addEventListener("click", function(e){
   room = chatName;
   //checks if user already busy in call
+=======
+document.addEventListener("click", function(e){
+  room = chatName;
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
   if (e.target && e.target.className == "user"){
     if(e.target.style.color == "orange"){
       panel.innerHTML = "<div id = 'callbusy' style='color:orange; font-weight:bold;'>" +e.target.id+" is busy in a call</div>";
@@ -128,12 +164,22 @@ document.addEventListener("click", function(e){
   }
 });
 
+<<<<<<< HEAD
 //listens for user to be invited into chat
 socket.on("invite", function(data){
   targetName = data;
   incoming(data);
   var user = document.getElementsByClassName("user");
   for (var i=0; i<user.length; i++){
+=======
+socket.on("invite", function(data){
+  targetName = data;
+  console.log("invite from..." + data);
+  incoming(data);
+  var user = document.getElementsByClassName("user");
+  for (var i=0; i<user.length; i++){
+    console.log(user[i].id);
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
     if (user[i].id == data){
       room = data;
       socket.emit('create or join', room);
@@ -141,6 +187,11 @@ socket.on("invite", function(data){
       sendMessage('got user media');
     }
   }
+<<<<<<< HEAD
+=======
+  console.log("The room will be:" + room);
+  console.log("PC IS...." + pc);
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 });
 
 ///////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!
@@ -149,7 +200,10 @@ if (room != '') {
   console.log('Attempted to create or  join room', room);
 }
 
+<<<<<<< HEAD
 //prepare room ready for chat
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 function dial (room){
   if (room !== '') {
     socket.emit('create or join', room);
@@ -157,49 +211,76 @@ function dial (room){
   }
 }
 
+<<<<<<< HEAD
 //signals chat room createed
+=======
+
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 socket.on('created', function(room) {
   console.log('Created room ' + room);
   isInitiator = true;
 });
 
+<<<<<<< HEAD
  //signals chat room full - not needed
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 socket.on('full', function(room) {
   console.log('Room ' + room + ' is full');
 });
 
+<<<<<<< HEAD
 //waits for someone to join room
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 socket.on('join', function (room){
   console.log('Another peer made a request to join room ' + room);
   console.log('This peer is the initiator of room ' + room + '!');
   isChannelReady = true;
 });
 
+<<<<<<< HEAD
 //signals another person has joined the room
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 socket.on('joined', function(room) {
   console.log('joined: ' + room);
   isChannelReady = true;
 });
 
+<<<<<<< HEAD
 //logs messages from server
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 socket.on('log', function(array) {
   console.log.apply(console, array);
 });
 
 ////////////////////////////////////////////////
+<<<<<<< HEAD
 
 //generic message function
+=======
+var localVideo = document.querySelector('#localVideo');
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 function sendMessage(message) {
   console.log('Client sending message: ', message);
   socket.emit('message', message);
 }
 
+<<<<<<< HEAD
 //display who is calling
+=======
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 function incoming(name){
   answer.disabled = false;
   endCall.disabled = false;
   call.disabled = true;
+<<<<<<< HEAD
   panel.innerHTML = "<div id='incomingCall'>"+name+" calling...</div>";
+=======
+  panel.innerHTML = "<div id='incomingCall' style='color:green; float: left; font-weight:bold;'>"+name+" caling...</div>";
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
 
@@ -232,6 +313,11 @@ socket.on('message', function(message) {
 
 ////////////////////////////////////////////////////
 
+<<<<<<< HEAD
+=======
+var remoteVideo = document.querySelector('#remoteVideo');
+
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 function startCam(){
   navigator.mediaDevices.getUserMedia({
     audio: false,
@@ -253,8 +339,12 @@ function gotStream(stream) {
 }
 
 var constraints = {
+<<<<<<< HEAD
   video: true,
   audio:true
+=======
+  video: true
+>>>>>>> f879e679dd3ca6ff0b85dd6b666138d54a4c200d
 };
 
 console.log('Getting user media with constraints', constraints);
