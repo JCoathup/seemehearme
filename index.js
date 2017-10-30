@@ -7,7 +7,7 @@ var hostroom;
 var fileServer = new(nodeStatic.Server)();
 var app = http.createServer(function(req, res) {
   fileServer.serve(req, res);
-}).listen(process.env.OPENSHIFT_NODEJS_PORT || 8000, process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
+}).listen(process.env.PORT || 8000);
 
 users = [];
 connections = [];
