@@ -55,6 +55,10 @@ input{
   width:90%;
   list-style-type:none;
   margin-top:1%;
+  margin-left:2%;
+}
+h2 {
+  margin-left: 2%;
 }
 #callButtons{
   display:flex;
