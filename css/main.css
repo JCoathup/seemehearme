@@ -4,6 +4,8 @@ body {
 }
 
 #videos {
+  width:100%;
+  height:auto;
   background-color:#000000;
   height:auto;
 }
