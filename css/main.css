@@ -117,8 +117,7 @@ border:none;
   display: none;
 }
 #localVideo, #remoteVideo{
-  top:0;
-  left:0;
+
 }
 #controls {
   color:#ffffff;
