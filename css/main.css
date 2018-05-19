@@ -13,9 +13,9 @@ body {
   width:80%;
   display:flex;
   flex-direction:column;
+  flex-wrap: wrap
   margin:2% auto;
   border: #ccc 1px solid;
-  overflow:hidden;
   background-color:#333;
   }
   #login{
