@@ -217,6 +217,9 @@ socket.on('message', function(message) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
      call.disabled = "true";
      localVideo.style.width = "20%";
+     localVideo.style.display = "absolute";
+     localVideo.style.left = "0";
+     localVideo.style.top = "0";
      remoteVideo.style.display ="inherit";
      remoteVideo.style.width = "100%";
      panel.innerHTML ="";
