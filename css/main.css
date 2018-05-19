@@ -77,7 +77,7 @@ img {
   background: url("../images/hangupDisabled.png") no-repeat scroll 0 0 transparent;
 }
 #answer:enabled{
-  width:33.33%;
+  flex:1;
   height:auto;
   margin:2% 5%;
   padding:1%;
@@ -90,7 +90,7 @@ img {
   from { opacity: 0; }
 }
 #call:enabled{
-  width:33.33%;
+  flex:1;
   height:auto;
   margin:2% 5%;
   padding:1%;
@@ -99,7 +99,7 @@ img {
   background: url("../images/call.png") no-repeat scroll 0 0 transparent;
 }
 #hangup:enabled{
-width:33.33%;
+flex:1;
 height:auto;
 margin:2% 5%;
 padding:1%;
