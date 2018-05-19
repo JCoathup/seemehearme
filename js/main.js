@@ -71,7 +71,7 @@ connect.addEventListener("click", function(e){
     socket.emit('new user', username.value, function(){
       login.innerHTML = "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
       chatName = username.value;
-      container.style.display = "block";
+      container.style.display = "flex";
       startCam();
     });
   }
