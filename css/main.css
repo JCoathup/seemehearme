@@ -20,6 +20,8 @@ body {
   }
   #login{
     width:80%;
+    display:flex;
+    flex-direction:row;
     margin:1% auto;
   }
   #login p{
@@ -28,13 +30,13 @@ body {
     font-weight:bold;
   }
 input{
-  width:75%;
+  flex:3;
   margin:0;
   border:none;
   padding:1%;
 }
 #connect{
-  width:22.5%;
+  flex:1;
   margin:0;
   border:none;
   padding:1%;
