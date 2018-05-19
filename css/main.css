@@ -50,7 +50,7 @@ input{
   padding:0%;
   height:100px;
   overflow: hidden;
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 #userList li{
   width:90%;
