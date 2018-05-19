@@ -1,7 +1,7 @@
 {
-  "name": "See Me Hear Me",
+  "name": "webrtc-codelab",
   "version": "0.0.1",
-  "description": "WebRTC chat application",
+  "description": "WebRTC codelab",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
