@@ -66,6 +66,8 @@ input{
   background-color:transparent;
   margin:2% 5%;
   padding:1%;
+  width:96px;
+  height:96px;
 }
 img {
   width:100%;
