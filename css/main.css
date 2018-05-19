@@ -114,9 +114,6 @@ border:none;
   overflow:visible;
 }
 #remoteVideo {
-  position:absolute;
-  width:0;
-  height:auto;
   margin:0;
 }
 #localVideo, #remoteVideo{
