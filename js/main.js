@@ -217,6 +217,7 @@ socket.on('message', function(message) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
      call.disabled = "true";
      localVideo.style.width = "20%";
+     remoteVideo.style.display ="inherit";
      remoteVideo.style.width = "100%";
      panel.innerHTML ="";
   } else if (message.type === 'candidate' && isStarted) {
@@ -432,8 +433,7 @@ function stop() {
   var resetUserColor = document.getElementById(targetName).style.color = "#ffffff";
   document.getElementById(targetName).style.borderColor = "#999999";
   localVideo.style.width = "100%";
-  remoteVideo.style.width = "0%";
-  remoteVideo.style.height = "0%";  
+  remoteVideo.style.display = "none";
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();

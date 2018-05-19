@@ -115,6 +115,7 @@ border:none;
 }
 #remoteVideo {
   margin:0;
+  display:none;
 }
 #localVideo, #remoteVideo{
   top:0;
