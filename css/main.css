@@ -54,6 +54,10 @@ input{
   list-style-type:none;
   margin-top:!%;
 }
+#callButtons{
+  display:flex;
+  flex-direction:row;
+}
 #answer:disabled, #hangup:disabled, #call:disabled{
   flex:1;
   border:none;
