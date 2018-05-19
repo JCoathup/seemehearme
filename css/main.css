@@ -46,7 +46,7 @@ input{
   padding:3%;
 }
 #userList{
-  width:30%;
+  width:100%;
   padding:3%;
   position:relative;
   overflow-y: scroll;
