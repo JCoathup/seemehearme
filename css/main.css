@@ -116,7 +116,7 @@ border:none;
 #remoteVideo {
   position:absolute;
   width:0;
-  height:0;
+  height:auto;
   margin:0;
 }
 #localVideo, #remoteVideo{
