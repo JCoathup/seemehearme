@@ -432,7 +432,7 @@ function stop() {
   var resetUserColor = document.getElementById(targetName).style.color = "#ffffff";
   document.getElementById(targetName).style.borderColor = "#999999";
   localVideo.style.width = "100%";
-  //remoteVideo.style.width = "0%";
+  remoteVideo.style.width = "0%";
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
