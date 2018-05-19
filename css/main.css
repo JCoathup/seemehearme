@@ -136,6 +136,13 @@ border:none;
   top:0;
   left:0;
 }
+#callingWho, #incomingCall {
+  width:33.33%;
+  background-color:#999;
+  position: absolute;
+  left:33.33%;
+  top:33.33%;
+}
 main {
   width:90%;
   margin: 0 auto;
