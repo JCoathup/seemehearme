@@ -8,7 +8,7 @@ body {
   background-color:#000000;
 }
 #container{
-  width:80%;
+  width:100%;
   display:flex;
   flex-direction:column;
   flex-wrap: wrap;
@@ -120,6 +120,11 @@ border:none;
 #localVideo, #remoteVideo{
   top:0;
   left:0;
+}
+main {
+  width:80%;
+  margin: 0 auto;
+  position:relative;
 }
 #controls {
   color:#ffffff;
