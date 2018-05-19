@@ -48,8 +48,9 @@ input{
 #userList{
   width:100%;
   padding:0%;
-  overflow-y: scroll;
   height:100px;
+  overflow: hidden;
+    overflow-y: scroll;
 }
 #userList li{
   width:90%;
