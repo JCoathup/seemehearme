@@ -47,8 +47,7 @@ input{
 }
 #userList{
   width:100%;
-  padding:3%;
-  position:relative;
+  padding:0%;
   overflow-y: scroll;
 }
 #userList li{
@@ -67,8 +66,6 @@ input{
   background-color:transparent;
   margin:2% 5%;
   padding:1%;
-  width:96px;
-  height:96px;
 }
 img {
   width:100%;
