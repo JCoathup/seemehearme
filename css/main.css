@@ -51,6 +51,7 @@ input{
   overflow-y: scroll;
 }
 #userList li{
+  width:90%;
   list-style-type:none;
   margin-top:1%;
 }
