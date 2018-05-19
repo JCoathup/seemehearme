@@ -64,6 +64,9 @@ input{
   width:96px;
   height:96px;
 }
+img {
+  width:100%;
+}
 #answer:disabled{
   background: url("../images/answerDisabled.png") no-repeat scroll 0 0 transparent;
 }
@@ -74,8 +77,8 @@ input{
   background: url("../images/hangupDisabled.png") no-repeat scroll 0 0 transparent;
 }
 #answer:enabled{
-  width:96px;
-  height:96px;
+  width:33.33%;
+  height:auto;
   margin:2% 5%;
   padding:1%;
   display:inline-block;
@@ -87,8 +90,8 @@ input{
   from { opacity: 0; }
 }
 #call:enabled{
-  width:96px;
-  height:96px;
+  width:33.33%;
+  height:auto;
   margin:2% 5%;
   padding:1%;
  border:none;
@@ -96,8 +99,8 @@ input{
   background: url("../images/call.png") no-repeat scroll 0 0 transparent;
 }
 #hangup:enabled{
-width:96px;
-height:96px;
+width:33.33%;
+height:auto;
 margin:2% 5%;
 padding:1%;
 border:none;

@@ -216,7 +216,7 @@ socket.on('message', function(message) {
   } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
      call.disabled = "true";
-     localVideo.style.width = "20%";
+     localVideo.style.width = "25%";
      localVideo.style.position = "absolute";
      localVideo.style.left = "0";
      localVideo.style.top = "0";
@@ -355,7 +355,7 @@ function doAnswer() {
         setLocalAndSendMessage,
         onCreateSessionDescriptionError
       );
-      localVideo.style.width = "20%";
+      localVideo.style.width = "25%";
       remoteVideo.style.width = "100%";
 }
 
