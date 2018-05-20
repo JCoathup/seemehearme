@@ -96,6 +96,7 @@ img {
   background: url("../images/hangupDisabled.png") no-repeat scroll 0 0 transparent;
 }
 #answer:enabled{
+  width:100px;
   margin:2% 5%;
   padding:1%;
   display:inline-block;
