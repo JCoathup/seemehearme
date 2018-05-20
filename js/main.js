@@ -218,8 +218,8 @@ socket.on('message', function(message) {
      call.disabled = "true";
      localVideo.style.width = "25%";
      localVideo.style.position = "absolute";
-     localVideo.style.left = "0";
-     localVideo.style.top = "0";
+     localVideo.style.left = "2%";
+     localVideo.style.top = "2%";
      remoteVideo.style.display ="inherit";
      remoteVideo.style.width = "100%";
      remoteVideo.style.height = "100vh";
