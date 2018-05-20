@@ -218,6 +218,7 @@ socket.on('message', function(message) {
      call.disabled = "true";
      localVideo.style.width = "25%";
      localVideo.style.height = "25%";
+     localVideo.style.position = "absolute";
      localVideo.style.left = "2%";
      localVideo.style.top = "2%";
      remoteVideo.style.display ="inherit";
@@ -439,6 +440,7 @@ function stop() {
   document.getElementById(targetName).style.borderColor = "#999999";
   localVideo.style.width = "100%";
   localVideo.style.height = "100%";
+  localVideo.style.display = "inherit";
   remoteVideo.style.display = "none";
   // isAudioMuted = false;
   // isVideoMuted = false;
