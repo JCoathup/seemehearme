@@ -222,6 +222,7 @@ socket.on('message', function(message) {
      localVideo.style.top = "0";
      remoteVideo.style.display ="inherit";
      remoteVideo.style.width = "100%";
+     remoteVideo.style.height = "100vh";
      panel.innerHTML ="";
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
@@ -357,6 +358,7 @@ function doAnswer() {
       );
       localVideo.style.width = "25%";
       remoteVideo.style.width = "100%";
+      remoteVideo.style.height = "100vh";
 }
 
 function setLocalAndSendMessage(sessionDescription) {
