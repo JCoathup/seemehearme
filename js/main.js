@@ -221,8 +221,8 @@ socket.on('message', function(message) {
      localVideo.style.left = "2%";
      localVideo.style.top = "2%";
      remoteVideo.style.display ="inherit";
-     remoteVideo.style.width = "100vw";
-     remoteVideo.style.height = "100vh";
+     remoteVideo.style.width = "100%";
+     remoteVideo.style.height = "100%";
      panel.innerHTML ="";
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
@@ -356,9 +356,9 @@ function doAnswer() {
         setLocalAndSendMessage,
         onCreateSessionDescriptionError
       );
-      localVideo.style.width = "25vh";
-      remoteVideo.style.width = "100vh";
-      remoteVideo.style.height = "100vh";
+      localVideo.style.width = "25%";
+      remoteVideo.style.width = "100%";
+      remoteVideo.style.height = "100%";
 }
 
 function setLocalAndSendMessage(sessionDescription) {
@@ -437,7 +437,7 @@ function stop() {
   socket.emit("ended call", chatName, targetName);
   var resetUserColor = document.getElementById(targetName).style.color = "#ffffff";
   document.getElementById(targetName).style.borderColor = "#999999";
-  localVideo.style.width = "100vh";
+  localVideo.style.width = "100%";
   remoteVideo.style.display = "none";
   // isAudioMuted = false;
   // isVideoMuted = false;
