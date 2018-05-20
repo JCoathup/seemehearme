@@ -137,7 +137,12 @@ border:none;
   top:0;
   left:0;
 }
-#callingWho, #incomingCall {
+#callButton {
+  position:absolute;
+  top:40%;
+  right:0;
+}
+#callingWho, #incomingCall, #callbusy {
   width:33.33%;
   background-color:#999;
   position: absolute;
@@ -146,7 +151,7 @@ border:none;
   text-align:center;
 }
 main {
-  width:90%;
+  width:100%;
   margin: 0 auto;
   position:relative;
 }
