@@ -96,8 +96,6 @@ img {
   background: url("../images/hangupDisabled.png") no-repeat scroll 0 0 transparent;
 }
 #answer:enabled{
-  flex:1;
-  height:auto;
   margin:2% 5%;
   padding:1%;
   display:inline-block;
@@ -109,8 +107,6 @@ img {
   from { opacity: 0; }
 }
 #call:enabled{
-  flex:1;
-  height:auto;
   margin:2% 5%;
   padding:1%;
  border:none;
