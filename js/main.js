@@ -440,7 +440,7 @@ function stop() {
   document.getElementById(targetName).style.borderColor = "#999999";
   localVideo.style.width = "100%";
   localVideo.style.height = "100%";
-  localVideo.style.display = "inherit";
+  localVideo.style.display = "block";
   remoteVideo.style.display = "none";
   // isAudioMuted = false;
   // isVideoMuted = false;
