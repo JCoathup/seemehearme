@@ -217,6 +217,7 @@ socket.on('message', function(message) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
      call.disabled = "true";
      localVideo.style.width = "25%";
+     localVideo.style.height = "25%";
      localVideo.style.position = "absolute";
      localVideo.style.left = "2%";
      localVideo.style.top = "2%";
