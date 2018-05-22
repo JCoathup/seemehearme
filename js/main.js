@@ -108,11 +108,7 @@ socket.on('get users', function(data){
 //listens for user to be dialled
 document.addEventListener("click", function(e){
   room = chatName;
-  //menu operation
-  if (e.target && e.target.className == "menu"){
-    console.log("khll");
-        controls.classList.toggle('controls--active');
-  }
+
   //checks if user already busy in call
   if (e.target && e.target.className == "user"){
     if(e.target.style.color == "orange"){
@@ -534,3 +530,10 @@ function removeCN(sdpLines, mLineIndex) {
   sdpLines[mLineIndex] = mLineElements.join(' ');
   return sdpLines;
 }
+document.addEventListener("click", function(){
+  //menu operation
+  if (e.target && e.target.className == "menu"){
+    console.log("khll");
+        controls.classList.toggle('controls--active');
+  }
+})
