@@ -162,7 +162,7 @@ main {
   margin: 0 auto;
   position:relative;
 }
-#controls {
+.controls {
   color:#ffffff;
   height:auto;
   display:none;
