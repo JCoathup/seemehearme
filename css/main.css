@@ -178,3 +178,6 @@ li{
 #panel{
   height:20px;
 }
+#panel, #userList {
+  display:none;
+}
