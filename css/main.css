@@ -184,3 +184,11 @@ li{
 #panel, #userList {
   display:none;
 }
+#menu {
+  color:#fff;
+  background-color:#666;
+  position:absolute;
+  top:2%;
+  right:2%;
+  z-index:2;
+}
