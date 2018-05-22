@@ -7,6 +7,7 @@ var endCall = document.getElementById("hangup");
 var ringer = document.getElementById("ringer");
 var panel = document.getElementById("panel");
 var menu = document.querySelector("#menu");
+var container = document.querySelector("#container");
 
 
 
@@ -131,7 +132,7 @@ document.addEventListener("click", function(e){
     call.disabled = false;
     endCall.disabled = true;
     answer.disabled = true;
-    panel.innerHTML = "<div id='callingWho' style='color:green; font-weight:bold;'>calling " + targetName + "</div";
+    container.innerHTML = "<div id='callingWho' style='color:green; font-weight:bold;'>calling " + targetName + "</div";
   }
 });
 
@@ -206,7 +207,7 @@ function incoming(name){
   answer.disabled = false;
   endCall.disabled = false;
   call.disabled = true;
-  panel.innerHTML = "<div id='incomingCall'>"+name+" calling...</div>";
+  container.innerHTML = "<div id='incomingCall'>"+name+" calling...</div>";
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
 
