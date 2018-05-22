@@ -6,7 +6,7 @@ var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 var ringer = document.getElementById("ringer");
 var panel = document.getElementById("panel");
-var menu = document.querySelector("#menu");
+var menu = document.querySelector("menu");
 var controls = document.querySelector(".controls");
 
 
@@ -533,7 +533,6 @@ function removeCN(sdpLines, mLineIndex) {
 document.addEventListener("click", function(e){
   //menu operation
   if (e.target && e.target.id == "menu"){
-    console.log("khll");
-        controls.classList.toggle('controls--active');
+    controls.classList.toggle('controls--active');
   }
 })
