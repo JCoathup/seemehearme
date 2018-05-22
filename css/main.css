@@ -170,7 +170,7 @@ main {
   right:2%;
   top:5%;
 }
-#controls--active {
+.controls--active {
   display:block;
 }
 #hangupMessage{
