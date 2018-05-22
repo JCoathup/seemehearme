@@ -59,7 +59,7 @@ input{
   padding:0%;
   height:50%;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 #userList li{
   color: green;
