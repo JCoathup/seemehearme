@@ -115,7 +115,7 @@ document.addEventListener("click", function(e){
   //checks if user already busy in call
   if (e.target && e.target.className == "user"){
     if(e.target.style.color == "orange"){
-      panel.innerHTML = "<div id = 'callbusy' style='color:orange; font-weight:bold;'>" +e.target.id+" is busy in a call</div>";
+      container.innerHTML += "<div id = 'callbusy' style='color:orange; font-weight:bold;'>" +e.target.id+" is busy in a call</div>";
       setTimeout(function(){
         panel.innerHTML = "";
       }, 1500);
@@ -132,7 +132,7 @@ document.addEventListener("click", function(e){
     call.disabled = false;
     endCall.disabled = true;
     answer.disabled = true;
-    container.innerHTML = "<div id='callingWho' style='color:green; font-weight:bold;'>calling " + targetName + "</div";
+    container.innerHTML += "<div id='callingWho' style='color:green; font-weight:bold;'>calling " + targetName + "</div";
   }
 });
 
@@ -207,7 +207,7 @@ function incoming(name){
   answer.disabled = false;
   endCall.disabled = false;
   call.disabled = true;
-  container.innerHTML = "<div id='incomingCall'>"+name+" calling...</div>";
+  container.innerHTML += "<div id='incomingCall'>"+name+" calling...</div>";
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
 
