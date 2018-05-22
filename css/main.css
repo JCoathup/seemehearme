@@ -170,6 +170,9 @@ main {
   right:2%;
   top:5%;
 }
+#controls--active {
+  display:block;
+}
 #hangupMessage{
   color:#fff;
   margin:15% auto;

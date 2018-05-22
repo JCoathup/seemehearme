@@ -10,7 +10,7 @@ var menu = document.querySelector("#menu");
 var controls = document.querySelector("#controls");
 
 menu.addEventListener("click", function(){
-  controls.style.display = "block";
+  controls.classList.toggle('controls--active')
 });
 
 //disable buttons on start
