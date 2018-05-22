@@ -73,7 +73,8 @@ connect.addEventListener("click", function(e){
     });
     //no duplicate found... continue
     socket.emit('new user', username.value, function(){
-      login.innerHTML = "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
+      var controls = document.querySelector(".controls");
+      controls.innerHTML = "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
       chatName = username.value;
       container.style.display = "flex";
       startCam();
