@@ -532,7 +532,7 @@ function removeCN(sdpLines, mLineIndex) {
 }
 document.addEventListener("click", function(e){
   //menu operation
-  if (e.target && e.target.className == "menu"){
+  if (e.target && e.target.id == "menu"){
     console.log("khll");
         controls.classList.toggle('controls--active');
   }
