@@ -6,6 +6,12 @@ var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 var ringer = document.getElementById("ringer");
 var panel = document.getElementById("panel");
+var menu = document.querySelector("#menu");
+var controls = document.querySelector("#controls");
+
+menu.addEventListener("click", function(){
+  controls.style.display = "block";
+});
 
 //disable buttons on start
 call.disabled = true;

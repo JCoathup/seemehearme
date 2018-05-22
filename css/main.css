@@ -165,6 +165,10 @@ main {
 #controls {
   color:#ffffff;
   height:auto;
+  display:none;
+  position:absolute;
+  right:2%;
+  top:5%;
 }
 #hangupMessage{
   color:#fff;
@@ -181,9 +185,6 @@ li{
 #panel{
   height:20px;
 }
-#panel, #userList {
-  display:none;
-}
 #menu {
   color:#fff;
   background-color:#666;
@@ -191,4 +192,5 @@ li{
   top:2%;
   right:2%;
   z-index:2;
+  padding:2%;
 }
