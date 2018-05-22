@@ -7,11 +7,9 @@ var endCall = document.getElementById("hangup");
 var ringer = document.getElementById("ringer");
 var panel = document.getElementById("panel");
 var menu = document.querySelector("#menu");
-var controls = document.querySelector("#controls");
+var controls = document.querySelector(".controls");
 
-menu.addEventListener("click", function(){
-  controls.classList.toggle('controls--active')
-});
+
 
 //disable buttons on start
 call.disabled = true;
@@ -110,6 +108,10 @@ socket.on('get users', function(data){
 //listens for user to be dialled
 document.addEventListener("click", function(e){
   room = chatName;
+  //menu operation
+  if (e.target && e.target.className == "menu"){
+        controls.classList.toggle('controls--active');
+  }
   //checks if user already busy in call
   if (e.target && e.target.className == "user"){
     if(e.target.style.color == "orange"){
