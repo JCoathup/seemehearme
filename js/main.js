@@ -530,7 +530,7 @@ function removeCN(sdpLines, mLineIndex) {
   sdpLines[mLineIndex] = mLineElements.join(' ');
   return sdpLines;
 }
-document.addEventListener("click", function(){
+document.addEventListener("click", function(e){
   //menu operation
   if (e.target && e.target.className == "menu"){
     console.log("khll");
