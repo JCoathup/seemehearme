@@ -110,6 +110,7 @@ document.addEventListener("click", function(e){
   room = chatName;
   //menu operation
   if (e.target && e.target.className == "menu"){
+    console.log("khll");
         controls.classList.toggle('controls--active');
   }
   //checks if user already busy in call
