@@ -133,7 +133,7 @@ document.addEventListener("click", function(e){
     endCall.disabled = true;
     answer.disabled = true;
     controls.classList.remove("controls--active");
-    container.innerHTML += `<div id='callingWho' style='color:green; font-weight:bold;'>calling " + targetName + "</div>
+    container.innerHTML += `<div id='callingWho' style='color:green; font-weight:bold;'>calling ${targetName}</div>
                             <button style="background-color:red; color:white;">Stop</button>`;
   }
 });
@@ -209,7 +209,7 @@ function incoming(name){
   answer.disabled = false;
   endCall.disabled = false;
   call.disabled = true;
-  container.innerHTML += `<div id='incomingCall'>"+name+" calling...</div>
+  container.innerHTML += `<div id='incomingCall'>${name} calling...</div>
                           <button style="background-color:green; color:white;">Answer</button><button style="background-color:red; color:white;">Reject</button>`;
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
