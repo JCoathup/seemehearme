@@ -115,7 +115,7 @@ document.addEventListener("click", function(e){
   //checks if user already busy in call
   if (e.target && e.target.className == "user"){
     if(e.target.style.color == "orange"){
-      container.innerHTML += "<div id = 'callbusy' style='color:orange; font-weight:bold;'>" +e.target.id+" is busy in a call</div>";
+      container.innerHTML += `<div id = 'callbusy' style='color:orange; font-weight:bold;'>${e.target.id} is busy in a call</div>`;
       setTimeout(function(){
         panel.innerHTML = "";
       }, 1500);
@@ -136,7 +136,7 @@ document.addEventListener("click", function(e){
     controls.classList.remove("controls--active");
     container.innerHTML += `<div id='callingWho' style='color:green; font-weight:bold;'>
                                 <div>calling ${targetName}</div>
-                            <button style="width:30%; background-color:red; color:white;">Stop</button></div>`;
+                            <button id="stop" style="padding:2%; width:30%; background-color:red; color:white;">Stop</button></div>`;
   }
 });
 
@@ -212,7 +212,7 @@ function incoming(name){
   endCall.disabled = false;
   call.disabled = true;
   container.innerHTML += `<div id='incomingCall'><div>${name} calling...</div>
-                          <button style="width:30%; background-color:green; color:white;">Answer</button><button style="width:30%; background-color:red; color:white;">Reject</button></div>`;
+                          <button id="answer" onclick="doAnswer()" style="padding:2%; width:30%; background-color:green; color:white;">Answer</button><button id="reject" onclick="hangup()" style="padding:2%; width:30%; background-color:red; color:white;">Reject</button></div>`;
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
 
