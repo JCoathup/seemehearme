@@ -359,7 +359,7 @@ function doAnswer() {
   inCall.style.color = "green";
   inCall.style.borderColor = "green";
   ringer.innerHTML = "";
-  var answer = document.getElementById("answer1");
+  var answer = document.getElementById("answer");
   panel.innerHTML = "";
   socket.emit("in call", targetName, chatName);
   endCall.disabled = false;
