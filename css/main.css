@@ -9,13 +9,14 @@ body {
 }
 
 #videos {
-  width:100%;
-  height:100%;
+  width:100vw;
+  height:100vh;
   background-color:#000000;
   overflow:hidden;
 }
 #container{
-  width:100%;
+  width:100vw;
+  height:100vh;
   display:flex;
   flex-direction:column;
   flex-wrap: wrap;
@@ -156,11 +157,6 @@ border:none;
   left:33.33%;
   top:33.33%;
   text-align:center;
-}
-main {
-  width:100%;
-  margin: 0 auto;
-  position:relative;
 }
 .controls {
   color:#ffffff;
