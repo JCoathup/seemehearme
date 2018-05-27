@@ -234,7 +234,7 @@ socket.on('message', function(message) {
      localVideo.style.position = "absolute";
      localVideo.style.left = "2%";
      localVideo.style.top = "2%";
-     //remoteVideo.style.display ="inherit";
+     remoteVideo.style.display ="block";
      remoteVideo.style.width = "100%";
      remoteVideo.style.height = "100%";
      panel.innerHTML ="";
