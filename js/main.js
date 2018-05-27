@@ -540,6 +540,7 @@ function removeCN(sdpLines, mLineIndex) {
 }
 document.addEventListener("click", function(e){
   if (e.target && e.target.id == "answer"){
+    console.log("khk");
     doAnswer();
   }
   if (e.target && e.target.id == "reject"){
