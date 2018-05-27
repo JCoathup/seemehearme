@@ -252,6 +252,7 @@ socket.on('message', function(message) {
 ////////////////////////////////////////////////////
 
 function startCam(){
+  var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true
