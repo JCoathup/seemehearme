@@ -212,7 +212,7 @@ function incoming(name){
   endCall.disabled = false;
   call.disabled = true;
   container.innerHTML += `<div id='incomingCall'><div>${name} calling...</div>
-                          <button id="answer" style="padding:2%; width:30%; background-color:green; color:white;">Answer</button><button id="reject" style="padding:2%; width:30%; background-color:red; color:white;">Reject</button></div>`;
+                          <button id="answer1" style="padding:2%; width:30%; background-color:green; color:white;">Answer</button><button id="reject1" style="padding:2%; width:30%; background-color:red; color:white;">Reject</button></div>`;
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
 
@@ -540,10 +540,10 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 document.addEventListener("click", function(e){
-  if (e.target && e.target.id == "answer"){
+  if (e.target && e.target.id == "answer1"){
     doAnswer();
   }
-  if (e.target && e.target.id == "reject"){
+  if (e.target && e.target.id == "reject1"){
     hangup();
   }
   //menu operation
