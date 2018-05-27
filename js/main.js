@@ -78,7 +78,6 @@ connect.addEventListener("click", function(e){
       //var controls = document.querySelector(".controls");
       panel.innerHTML += "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
       chatName = username.value;
-      container.style.display = "block";
       startCam();
     });
   }
@@ -228,6 +227,7 @@ socket.on('message', function(message) {
     pc.setRemoteDescription(new RTCSessionDescription(message));
   } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
+     console.log("hello");
      call.disabled = "true";
      localVideo.style.width = "25%";
      localVideo.style.height = "25%";
