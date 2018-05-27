@@ -6,6 +6,11 @@ var answer = document.getElementById("answer");
 var endCall = document.getElementById("hangup");
 var ringer = document.getElementById("ringer");
 var panel = document.getElementById("panel");
+var menu = document.querySelector("#menu");
+var container = document.querySelector("#container");
+
+
+
 
 //disable buttons on start
 call.disabled = true;
@@ -69,7 +74,9 @@ connect.addEventListener("click", function(e){
     });
     //no duplicate found... continue
     socket.emit('new user', username.value, function(){
-      login.innerHTML = "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
+      login.innerHTML = "";
+      //var controls = document.querySelector(".controls");
+      panel.innerHTML += "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
       chatName = username.value;
       container.style.display = "block";
       startCam();
@@ -104,10 +111,11 @@ socket.on('get users', function(data){
 //listens for user to be dialled
 document.addEventListener("click", function(e){
   room = chatName;
+
   //checks if user already busy in call
   if (e.target && e.target.className == "user"){
     if(e.target.style.color == "orange"){
-      panel.innerHTML = "<div id = 'callbusy' style='color:orange; font-weight:bold;'>" +e.target.id+" is busy in a call</div>";
+      container.innerHTML += `<div id = 'callbusy' style='color:orange; font-weight:bold;'>${e.target.id} is busy in a call</div>`;
       setTimeout(function(){
         panel.innerHTML = "";
       }, 1500);
@@ -124,7 +132,11 @@ document.addEventListener("click", function(e){
     call.disabled = false;
     endCall.disabled = true;
     answer.disabled = true;
-    panel.innerHTML = "<div id='callingWho' style='color:green; font-weight:bold;'>calling " + targetName + "</div";
+    var controls = document.querySelector(".controls");
+    controls.classList.remove("controls--active");
+    container.innerHTML += `<div id='callingWho' style='color:green; font-weight:bold;'>
+                                <div>calling ${targetName}</div>
+                            <button id="stop" style="padding:2%; width:30%; background-color:red; color:white;">Stop</button></div>`;
   }
 });
 
@@ -199,7 +211,8 @@ function incoming(name){
   answer.disabled = false;
   endCall.disabled = false;
   call.disabled = true;
-  panel.innerHTML = "<div id='incomingCall'>"+name+" calling...</div>";
+  container.innerHTML += `<div id='incomingCall'><div>${name} calling...</div>
+                          <button id="answer" style="padding:2%; width:30%; background-color:green; color:white;">Answer</button><button id="reject" style="padding:2%; width:30%; background-color:red; color:white;">Reject</button></div>`;
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
 
@@ -216,8 +229,14 @@ socket.on('message', function(message) {
   } else if (message.type === 'answer' && isStarted) {
      pc.setRemoteDescription(new RTCSessionDescription(message));
      call.disabled = "true";
-     localVideo.style.width = "20%";
+     localVideo.style.width = "25%";
+     localVideo.style.height = "25%";
+     localVideo.style.position = "absolute";
+     localVideo.style.left = "2%";
+     localVideo.style.top = "2%";
+     remoteVideo.style.display ="inherit";
      remoteVideo.style.width = "100%";
+     remoteVideo.style.height = "100%";
      panel.innerHTML ="";
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
@@ -351,14 +370,14 @@ function doAnswer() {
         setLocalAndSendMessage,
         onCreateSessionDescriptionError
       );
-      localVideo.style.width = "20%";
+      localVideo.style.width = "25%";
       remoteVideo.style.width = "100%";
+      remoteVideo.style.height = "100%";
 }
 
 function setLocalAndSendMessage(sessionDescription) {
   // Set Opus as the preferred codec in SDP if Opus is present.
   //  sessionDescription.sdp = preferOpus(sessionDescription.sdp);
-  console.log("helo");
   pc.setLocalDescription(sessionDescription);
   console.log('setLocalAndSendMessage sending message', sessionDescription);
   sendMessage(sessionDescription);
@@ -433,7 +452,9 @@ function stop() {
   var resetUserColor = document.getElementById(targetName).style.color = "#ffffff";
   document.getElementById(targetName).style.borderColor = "#999999";
   localVideo.style.width = "100%";
-  //remoteVideo.style.width = "0%";
+  localVideo.style.height = "100%";
+  localVideo.style.display = "block";
+  remoteVideo.style.display = "none";
   // isAudioMuted = false;
   // isVideoMuted = false;
   pc.close();
@@ -517,3 +538,17 @@ function removeCN(sdpLines, mLineIndex) {
   sdpLines[mLineIndex] = mLineElements.join(' ');
   return sdpLines;
 }
+document.addEventListener("click", function(e){
+  if (e.target && e.target.id == "answer"){
+    console.log("khk");
+    doAnswer();
+  }
+  if (e.target && e.target.id == "reject"){
+    hangup();
+  }
+  //menu operation
+  if (e.target && e.target.id == "menu"){
+    var controls = document.querySelector(".controls");
+    controls.classList.toggle('controls--active');
+  }
+})
