@@ -78,7 +78,7 @@ connect.addEventListener("click", function(e){
       //var controls = document.querySelector(".controls");
       panel.innerHTML += "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
       chatName = username.value;
-      container.style.display = "flex";
+      container.style.display = "block";
       startCam();
     });
   }
