@@ -212,7 +212,7 @@ function incoming(name){
   endCall.disabled = false;
   call.disabled = true;
   container.innerHTML += `<div id='incomingCall'><div>${name} calling...</div>
-                          <button id="answer" onclick="doAnswer()" style="padding:2%; width:30%; background-color:green; color:white;">Answer</button><button id="reject" onclick="hangup()" style="padding:2%; width:30%; background-color:red; color:white;">Reject</button></div>`;
+                          <button id="answer" style="padding:2%; width:30%; background-color:green; color:white;">Answer</button><button id="reject" style="padding:2%; width:30%; background-color:red; color:white;">Reject</button></div>`;
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
 
@@ -252,7 +252,6 @@ socket.on('message', function(message) {
 ////////////////////////////////////////////////////
 
 function startCam(){
-  var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true
@@ -540,6 +539,12 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 document.addEventListener("click", function(e){
+  if (e.target && e.target.id == "answer"){
+    doAnswer();
+  }
+  if (e.target && e.target.id == "reject"){
+    hangup();
+  }
   //menu operation
   if (e.target && e.target.id == "menu"){
     var controls = document.querySelector(".controls");
