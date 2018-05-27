@@ -78,7 +78,7 @@ connect.addEventListener("click", function(e){
       //var controls = document.querySelector(".controls");
       panel.innerHTML += "<p>You are connected as: <span id='chatname'>" + username.value + "</span></p>";
       chatName = username.value;
-      //container.style.display = "block";
+      container.style.display = "flex";
       startCam();
     });
   }
@@ -212,7 +212,7 @@ function incoming(name){
   endCall.disabled = false;
   call.disabled = true;
   container.innerHTML += `<div id='incomingCall'><div>${name} calling...</div>
-                          <button id="answer1" style="padding:2%; width:30%; background-color:green; color:white;">Answer</button><button id="reject1" style="padding:2%; width:30%; background-color:red; color:white;">Reject</button></div>`;
+                          <button id="answer" style="padding:2%; width:30%; background-color:green; color:white;">Answer</button><button id="reject" style="padding:2%; width:30%; background-color:red; color:white;">Reject</button></div>`;
   ringer.innerHTML += "<audio autoplay><source src='../sounds/phonering.mp3' type='audio/mp3'><source src='../sounds/phonering.wav' type='audio/wav'>Your browser does not support the audio element.</audio> ";
 }
 
@@ -234,7 +234,7 @@ socket.on('message', function(message) {
      localVideo.style.position = "absolute";
      localVideo.style.left = "2%";
      localVideo.style.top = "2%";
-     remoteVideo.style.display ="block";
+     remoteVideo.style.display ="inherit";
      remoteVideo.style.width = "100%";
      remoteVideo.style.height = "100%";
      panel.innerHTML ="";
@@ -354,7 +354,6 @@ function doCall() {
 }
 
 function doAnswer() {
-      console.log("khk");
   var inCall = document.getElementById(targetName);
   inCall.style.color = "green";
   inCall.style.borderColor = "green";
@@ -540,10 +539,11 @@ function removeCN(sdpLines, mLineIndex) {
   return sdpLines;
 }
 document.addEventListener("click", function(e){
-  if (e.target && e.target.id == "answer1"){
+  if (e.target && e.target.id == "answer"){
+    console.log("khk");
     doAnswer();
   }
-  if (e.target && e.target.id == "reject1"){
+  if (e.target && e.target.id == "reject"){
     hangup();
   }
   //menu operation
