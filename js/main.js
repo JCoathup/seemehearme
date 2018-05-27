@@ -354,6 +354,7 @@ function doCall() {
 }
 
 function doAnswer() {
+      console.log("khk");
   var inCall = document.getElementById(targetName);
   inCall.style.color = "green";
   inCall.style.borderColor = "green";
@@ -540,7 +541,6 @@ function removeCN(sdpLines, mLineIndex) {
 }
 document.addEventListener("click", function(e){
   if (e.target && e.target.id == "answer"){
-    console.log("khk");
     doAnswer();
   }
   if (e.target && e.target.id == "reject"){
