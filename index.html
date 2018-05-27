@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>See me hear me TESTING helloooo!!</title>
+  <title>See me hear me TEST</title>
    <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/main.css" />
 
@@ -12,31 +12,24 @@
 <body>
   <div id="login">
     <input id="username" type="text" placeholder="enter username">
-    <button id="connect">Connect</button>
+    <button id="connect">Connect</button>khh
   </div>
-  <main>
   <div id = "container">
 
     <div id="videos">
       <video id="localVideo" autoplay muted></video>
       <video id="remoteVideo" autoplay></video>
     </div>
-    <div id="menu">
-      MENU
-    </div>
-    <div class="controls">
+    <div id="controls">
       <div id="ringer"></div>
-      <div id="callButton">
       <button id="call"></button>
       <button id="answer" onclick="doAnswer()"></button>
       <button id="hangup" onclick="hangup()"></button>
-    </div>
-    <div id="panel"></div>
+      <div id="panel"></div>
       <div id="userList"></div>
-
     </div>
   </div>
-</main>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/lib/adapter.js"></script>
   <script src="js/main.js"></script>

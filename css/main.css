@@ -1,53 +1,40 @@
 body {
   font-family: helvetica;
-  background-color:#333333;
-  padding:0;
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
+  background-color:red;
 }
 
 #videos {
-
-  height: auto;
-  width: auto;
-  min-width: 100%;
-  min-height: 100%;
   background-color:#000000;
+  height:auto;
+  position:relative;
+  width:60%;
+
 }
 #container{
-  width:100vw;
-  height:100vh;
-  display:block;
-  flex-direction:column;
-  flex-wrap: wrap;
-  margin:0 auto;
-  background-color:#333;
-  position:relative;
+  width:80%;
+  height:76vh;
+  margin:2% auto;
+  border: #ccc 1px solid;
+  overflow:hidden;
+  background-color:red;
   }
   #login{
     width:80%;
-    display:flex;
-    flex-direction:row;
-    margin:0 auto;
+    margin:1% auto;
   }
   #login p{
-    position:absolute;
-    left:5%;
-    top:35%;
     color:#fff;
     font-size:16px;
     font-weight:bold;
   }
 input{
-  flex:3;
+  width:75%;
   margin:0;
   border:none;
   padding:1%;
 }
 #connect{
-  flex:1;
+  width:22.5%;
   margin:0;
   border:none;
   padding:1%;
@@ -59,28 +46,15 @@ input{
   padding:3%;
 }
 #userList{
-  width:100%;
-  padding:0%;
-  height:50%;
-  overflow: hidden;
-  overflow-y: auto;
+  width:30%;
+  padding:3%;
+  position:relative;
 }
 #userList li{
-  color: green;
-  width:90%;
   list-style-type:none;
-  margin-top:1%;
-  margin-left:2%;
-}
-h2 {
-  margin-left: 2%;
-}
-#callButtons{
-  display:flex;
-  flex-direction:row;
+  margin-top:!%;
 }
 #answer:disabled, #hangup:disabled, #call:disabled{
-  flex:1;
   border:none;
   padding:0;
   background-color:#333;
@@ -89,9 +63,6 @@ h2 {
   padding:1%;
   width:96px;
   height:96px;
-}
-img {
-  width:100%;
 }
 #answer:disabled{
   background: url("../images/answerDisabled.png") no-repeat scroll 0 0 transparent;
@@ -103,7 +74,8 @@ img {
   background: url("../images/hangupDisabled.png") no-repeat scroll 0 0 transparent;
 }
 #answer:enabled{
-  width:100px;
+  width:96px;
+  height:96px;
   margin:2% 5%;
   padding:1%;
   display:inline-block;
@@ -115,6 +87,8 @@ img {
   from { opacity: 0; }
 }
 #call:enabled{
+  width:96px;
+  height:96px;
   margin:2% 5%;
   padding:1%;
  border:none;
@@ -122,8 +96,8 @@ img {
   background: url("../images/call.png") no-repeat scroll 0 0 transparent;
 }
 #hangup:enabled{
-flex:1;
-height:auto;
+width:96px;
+height:96px;
 margin:2% 5%;
 padding:1%;
 border:none;
@@ -135,51 +109,20 @@ border:none;
 }
 #localVideo{
   z-index:1;
-  height: auto;
-  width: auto;
-  min-width: 100%;
-  min-height: 100%;
+  width:100%;
   margin:0;
-}
-#remoteVideo {
-
-height: auto;
-width: auto;
-min-width: 100%;
-min-height: 100%;
-  margin:0;
-  display:none;
+  overflow:visible;
 }
 #localVideo, #remoteVideo{
+  position:absolute;
   top:0;
   left:0;
 }
-#callButton {
-  position:absolute;
-  top:40%;
-  right:0;
-}
-#callingWho, #incomingCall, #callbusy {
-  width:33.33%;
-  background-color:#999;
-  position: absolute;
-  left:33.33%;
-  top:33.33%;
-  text-align:center;
-}
-.controls {
+#controls {
+  float:right;
   color:#ffffff;
-  width:0%;
-  height:0;
-  position:absolute;
-  right:2%;
-  top:5%;
-  overflow:hidden;
-}
-.controls--active {
-  background-color:#666;
-  height:100%;
-  width:30%;
+  height:auto;
+  width:40%;
 }
 #hangupMessage{
   color:#fff;
@@ -195,13 +138,4 @@ li{
 }
 #panel{
   height:20px;
-}
-#menu {
-  color:#fff;
-  background-color:#666;
-  position:absolute;
-  top:2%;
-  right:2%;
-  z-index:2;
-  padding:2%;
 }
