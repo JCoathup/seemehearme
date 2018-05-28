@@ -241,6 +241,7 @@ socket.on('message', function(message) {
      remoteVideo.style.left = "0";
      remoteVideo.style.top = "0";
      panel.innerHTML ="";
+     console.log("HELLLO");
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
       sdpMLineIndex: message.label,
