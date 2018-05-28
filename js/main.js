@@ -234,9 +234,12 @@ socket.on('message', function(message) {
      localVideo.style.position = "absolute";
      localVideo.style.left = "2%";
      localVideo.style.top = "2%";
-     remoteVideo.style.display ="inherit";
+     remoteVideo.style.display ="block";
      remoteVideo.style.width = "100%";
      remoteVideo.style.height = "100%";
+     remoteVideo.style.position = "absolute";
+     remoteVideo.style.left = "0";
+     remoteVideo.style.top = "0";
      panel.innerHTML ="";
   } else if (message.type === 'candidate' && isStarted) {
     var candidate = new RTCIceCandidate({
